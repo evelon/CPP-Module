@@ -1,0 +1,10 @@
+# Target files
+ex00/megaphone
+ex01/phonebook
+
+# Subject files
+ex02/Account.class.hpp
+ex02/19920104_091532.log
+ex02/tests.cpp
+
+.DS_Store
