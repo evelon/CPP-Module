@@ -79,8 +79,18 @@ string	get_short(string str)
 	return (new_str);
 }
 
+// void	print_contact(contact *phonebook)
+// {
+
+// }
+
 void	search_contact(contact *phonebook, int contact_num)
 {
+	if (contact_num == 0)
+	{
+		cout << "No contact at all!" << endl;
+		return ;
+	}
 	cout << "/-------------------------------------------\\\n";
 	cout << "|     index|first name| last name|  nickname|\n";
 	if (contact_num >= 1)
@@ -91,6 +101,15 @@ void	search_contact(contact *phonebook, int contact_num)
 			<< get_short(phonebook[i].last_name)
 			<< get_short(phonebook[i].nick_name) << '\n';
 	cout << "\\-------------------------------------------/" << endl;
+
+	int input;
+	cin >> input;
+	if (cin.eof() || cin.fail() || input < 0 || input >= contact_num)
+	{
+		cout << "Wrong input. You failed to search." << endl;
+		return ;
+	}
+	cout << input << endl;
 	return ;
 }
 
@@ -101,10 +120,15 @@ int	main()
 	int		contact_num;
 
 	contact_num = 0;
-	cout << "Welcome to My Awesome Phonebook. Please insert a command." << endl;
+	cout << "Welcome to My Awesome Phonebook. Please insert a command. (ADD, SEARCH OR EXIT)" << endl;
 	while (1)
 	{
-		cin >> input;
+		getline(cin, input);
+		if (cin.eof())
+		{
+			cout << "Bye." << endl;
+			return (0);
+		}
 		if (!input.compare("EXIT"))
 		{
 			cout << "Thank you for using My Awesome Phonebook. \
