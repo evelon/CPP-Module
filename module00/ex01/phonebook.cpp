@@ -1,71 +1,89 @@
 #include "phonebook.hpp"
 
+void	contact::delete_contact(void)
+{
+	first_name = "";
+	last_name = "";
+	nick_name = "";
+	login = "";
+	postal_address = "";
+	email_address = "";
+	phone_number = "";
+	birthday_date = "";
+	favorite_meal = "";
+	underwear_color = "";
+	darkest_secret = "";
+}
+
 void	reset_contact(contact *phonebook, int *contact_num)
 {
-	cout << "My Awesome Phonebook is full! For farther use, \
-My Awesome Phonebook is erasing all the contacts." << endl;
+	std::cout << "My Awesome Phonebook is full! For farther use, \
+My Awesome Phonebook is erasing all the contacts." << std::endl;
 	for (int i = 0; i < *contact_num; i++)
-	{
-		phonebook[i].first_name = "";
-		phonebook[i].last_name = "";
-		phonebook[i].nick_name = "";
-		phonebook[i].postal_address = "";
-		phonebook[i].email_address = "";
-		phonebook[i].phone_number = "";
-		phonebook[i].birthday_date = "";
-		phonebook[i].favorite_meal = "";
-		phonebook[i].underwear_color = "";
-		phonebook[i].darkest_secret = "";
-	}
+		phonebook[i].delete_contact();
 	*contact_num = 0;
 	return ;
 }
 
-void	add_contact(contact *adding_one)
+void	contact::add_contact(void)
 {
-	string	name;
-	string	input;
+	std::string	name;
+	std::string	input;
 
-	cout << "You choose to add a new contact! To add a contact, \
+	std::cout << "You choose to add a new contact! To add a contact, \
 please type in the following information.\n\
-First, type in the first name of the new contact." << endl;
-	cin >> name;
-	(*adding_one).first_name = name;
-	cout << "Secondly, type in " << name << "'s last name." << endl;
-	cin >> input;
-	(*adding_one).last_name = input;
-	cout << "Thirdly, type in " << name << "'s nick_name." << endl;
-	cin >> input;
-	(*adding_one).nick_name = input;
-	cout << "Fourthly, type in " << name << "'s post address." << endl;
-	cin >> input;
-	(*adding_one).postal_address = input;
-	cout << "Fiftly, type in " << name << "'s email address." << endl;
-	cin >> input;
-	(*adding_one).email_address = input;
-	cout << "Sixthly, type in " << name << "'s phone number" << endl;
-	cin >> input;
-	(*adding_one).phone_number = input;
-	cout << "Seventhly, type in " << name << "'s birthday." << endl;
-	cin >> input;
-	(*adding_one).birthday_date = input;
-	cout << "Eighthly, type in " << name << "'s favorite meal." << endl;
-	cin >> input;
-	(*adding_one).favorite_meal = input;
-	cout << "Ninethly, type in " << name << "'s underwear color." << endl;
-	cin >> input;
-	(*adding_one).underwear_color = input;
-	cout << "Tenthly, type in " << name << "'s darkest secret." << endl;
-	cin >> input;
-	(*adding_one).darkest_secret = input;
-	cout << "Well done! You successfully typed in all the fields of a contact of My Awesome Phonebook. \
-It will keep the contact secretly and safely." << endl;
+First, type in the first name of the new contact." << std::endl;
+	std::getline(std::cin, name);
+	eof_bye();
+	first_name = name;
+	std::cout << "Secondly, type in " << name << "'s last name." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	last_name = input;
+	std::cout << "Thirdly, type in " << name << "'s nick_name." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	nick_name = input;
+	std::cout << "Fourthly, type in " << name << "'s post address." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	login = input;
+	std::cout << "Fiftly, type in " << name << "'s login." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	postal_address = input;
+	std::cout << "Sixthly, type in " << name << "'s email address." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	email_address = input;
+	std::cout << "Seventhly, type in " << name << "'s phone number" << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	phone_number = input;
+	std::cout << "Eighthly, type in " << name << "'s birthday." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	birthday_date = input;
+	std::cout << "Ninethly, type in " << name << "'s favorite meal." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	favorite_meal = input;
+	std::cout << "Tenthly, type in " << name << "'s underwear color." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	underwear_color = input;
+	std::cout << "Eleventhly, type in " << name << "'s darkest secret." << std::endl;
+	std::getline(std::cin, input);
+	eof_bye();
+	darkest_secret = input;
+	std::cout << "Well done! You successfully typed in all the fields of a contact of My Awesome Phonebook. \
+It will keep the contact secretly and safely." << std::endl;
 	return ;
 }
 
-string	get_short(string str)
+static std::string	get_short(std::string str)
 {
-	string	new_str;
+	std::string	new_str;
 
 	new_str = "";
 	if (str.length() <= 10)
@@ -79,74 +97,57 @@ string	get_short(string str)
 	return (new_str);
 }
 
-// void	print_contact(contact *phonebook)
-// {
+void	contact::print_short_contact(int index)
+{
+	std::cout << "|         " << index << '|' \
+		<< get_short(first_name)
+		<< get_short(last_name)
+		<< get_short(nick_name) << '\n';
+}
 
-// }
+void	contact::print_contact(int index)
+{
+	std::cout << "Here is the information of the index number " << index << "." << std::endl;
+	std::cout << "First name: " << first_name << std::endl;
+	std::cout << "Last name: " << last_name << std::endl;
+	std::cout << "Nick name: " << nick_name << std::endl;
+	std::cout << "Login: " << login << std::endl;
+	std::cout << "Post address: " << postal_address << std::endl;
+	std::cout << "Email address: " << email_address << std::endl;
+	std::cout << "Phone number: " << phone_number << std::endl;
+	std::cout << "Birthday date: " << birthday_date << std::endl;
+	std::cout << "Favorite meal: " << favorite_meal << std::endl;
+	std::cout << "Underwear color: " << underwear_color << std::endl;
+	std::cout << "Darkest secret: " << darkest_secret << std::endl;
+}
 
 void	search_contact(contact *phonebook, int contact_num)
 {
 	if (contact_num == 0)
 	{
-		cout << "No contact at all!" << endl;
+		std::cout << "No contact at all!" << std::endl;
 		return ;
 	}
-	cout << "/-------------------------------------------\\\n";
-	cout << "|     index|first name| last name|  nickname|\n";
+	std::cout << "/-------------------------------------------\\\n";
+	std::cout << "|     index|first name| last name|  nickname|\n";
 	if (contact_num >= 1)
-		cout << "|-------------------------------------------|\n";
+		std::cout << "|----------+----------+----------+----------|\n";
 	for (int i = 0; i < contact_num; i++)
-		cout << "|         " << i << '|' \
-			<< get_short(phonebook[i].first_name)
-			<< get_short(phonebook[i].last_name)
-			<< get_short(phonebook[i].nick_name) << '\n';
-	cout << "\\-------------------------------------------/" << endl;
+		phonebook[i].print_short_contact(i);
+	std::cout << "\\-------------------------------------------/" << std::endl;
 
-	int input;
-	cin >> input;
-	if (cin.eof() || cin.fail() || input < 0 || input >= contact_num)
+	int			index;
+	std::string	dump;
+
+	std::cin >> index;
+
+	if (std::cin.eof() || !std::cin)
 	{
-		cout << "Wrong input. You failed to search." << endl;
+		std::cin.clear();
+		std::cout << "Wrong input. You failed to search." << std::endl;
+		std::cin >> dump;
 		return ;
 	}
-	cout << input << endl;
+	phonebook[index].print_contact(index);
 	return ;
-}
-
-int	main()
-{
-	string	input;
-	contact	phonebook[8];
-	int		contact_num;
-
-	contact_num = 0;
-	cout << "Welcome to My Awesome Phonebook. Please insert a command. (ADD, SEARCH OR EXIT)" << endl;
-	while (1)
-	{
-		getline(cin, input);
-		if (cin.eof())
-		{
-			cout << "Bye." << endl;
-			return (0);
-		}
-		if (!input.compare("EXIT"))
-		{
-			cout << "Thank you for using My Awesome Phonebook. \
-We are clearing all the contacts in case of you using our service later. \
-Thank you." << endl;
-			return (0);
-		}
-		else if (!input.compare("ADD"))
-		{
-			if (contact_num == 8)
-			{
-				reset_contact(phonebook, &contact_num);
-			}
-			else
-				add_contact(&phonebook[contact_num++]);
-		}
-		else if (!input.compare("SEARCH"))
-			search_contact(phonebook, contact_num);
-	}
-	return (0);
 }
