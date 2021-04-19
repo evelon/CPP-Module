@@ -1,5 +1,5 @@
-#include "ZombieHorde.hpp"
-#include <sstream>
+# include "ZombieHorde.hpp"
+# include <sstream>
 
 static time_t	get_current_time(void)
 {

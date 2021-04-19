@@ -4,7 +4,7 @@ Human::Human(void) {}
 
 Human::~Human(void) {}
 
-Brain		Human::getBrain(void)
+const Brain&	Human::getBrain(void)
 {
 	return (brain);
 }

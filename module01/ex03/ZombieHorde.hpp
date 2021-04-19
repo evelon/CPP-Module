@@ -1,4 +1,6 @@
-#include "Zombie.hpp"
+#ifndef ZOMBIEHORDE_CPP
+# define ZOMBIEHORDE_CPP
+# include "Zombie.hpp"
 
 class	ZombieHorde
 {
@@ -11,3 +13,5 @@ public:
 	~ZombieHorde(void);
 	void	announce(void);
 };
+
+#endif

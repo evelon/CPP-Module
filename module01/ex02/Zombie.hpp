@@ -1,4 +1,6 @@
-#include <string>
+#ifndef ZOMBIE_HPP
+# define ZOMIBE_HPP
+# include <string>
 
 class	Zombie
 {
@@ -11,3 +13,5 @@ public:
 	~Zombie(void);
 	void	announce(void);
 };
+
+#endif

@@ -1,4 +1,6 @@
-#include <string>
+#ifndef ZOMBIE_HPP
+# define ZOMIBE_HPP
+# include <string>
 
 class	Zombie
 {
@@ -13,3 +15,5 @@ public:
 	void	setAttribute(std::string name, std::string type);
 	void	announce(void);
 };
+
+#endif
