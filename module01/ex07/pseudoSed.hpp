@@ -14,3 +14,5 @@ public:
 	~pseudoSed();
 	void	replace(std::string& text);
 };
+
+#endif
