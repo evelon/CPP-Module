@@ -1,5 +1,4 @@
 #include "Human.hpp"
-#include <iostream>
 
 void	Human::meleeAttack(std::string const & target)
 {
@@ -18,5 +17,26 @@ void	Human::intimidatingShout(std::string const & target)
 
 void	Human::action(std::string const & action_name, std::string const & target)
 {
-	std::cout << "A human is doing " << action_name << " to " << target << "." << std::endl;
+	void	(Human::* actions[3])(std::string const &) =
+	{
+		&Human::meleeAttack,
+		&Human::rangedAttack,
+		&Human::intimidatingShout
+	};
+	std::string	names[3] =
+	{
+		"meleeAttack",
+		"rangedAttack",
+		"intimidatingShout"
+	};
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (!action_name.compare(names[i]))
+		{
+			(this->*actions[i])(target);
+			return ;
+		}
+	}
+	return ;
 }

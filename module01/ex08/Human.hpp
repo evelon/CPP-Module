@@ -2,6 +2,7 @@
 # define HUMAN_HPP
 
 # include <string>
+# include <iostream>
 
 class	Human
 {
