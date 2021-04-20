@@ -1,13 +1,14 @@
 .PHONY: all re clean fclean
 
-NAME: replace
+NAME = replace
 
 all: $(NAME)
 
 CPP = clang++
-CFLAGS = -Wall -Werrror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-SRCS =
+SRCS = pseudoSed.cpp \
+	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)

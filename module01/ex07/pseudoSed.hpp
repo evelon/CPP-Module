@@ -6,13 +6,16 @@
 class pseudoSed
 {
 private:
-	std::string	oldStr;
-	std::string	newStr;
+	std::string	text;
 
 public:
-	pseudoSed(std::string oldStr, std::string newStr);
+	pseudoSed(void);
+	pseudoSed(std::string text);
 	~pseudoSed();
-	void	replace(std::string& text);
+	std::string&	getText(void);
+	void			setText(std::string str);
+	void			replace(std::string& s1, std::string& s2);
+	void			replace(char* s1, char* s2);
 };
 
 #endif
