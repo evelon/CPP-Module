@@ -37,4 +37,16 @@ typedef union
 
 std::ostream& operator<<(std::ostream& os, Fixed const& fixed);
 
+bool	operator>(Fixed const& a, Fixed const& b);
+bool	operator<(Fixed const& a, Fixed const& b);
+bool	operator>=(Fixed const& a, Fixed const& b);
+bool	operator<=(Fixed const& a, Fixed const& b);
+bool	operator==(Fixed const& a, Fixed const& b);
+bool	operator!=(Fixed const& a, Fixed const& b);
+
+Fixed	operator+(Fixed const&)
+Fixed	operator-(Fixed const&)
+Fixed	operator*(Fixed const&)
+Fixed	operator/(Fixed const&)
+
 #endif
