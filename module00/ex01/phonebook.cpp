@@ -141,11 +141,16 @@ void	search_contact(contact *phonebook, int contact_num)
 
 	std::cin >> index;
 
-	if (std::cin.eof() || !std::cin)
+	if (std::cin.eof() || !std::cin || index >= contact_num)
 	{
 		std::cin.clear();
 		std::cout << "Wrong input. You failed to search." << std::endl;
 		std::cin >> dump;
+		return ;
+	}
+	else if (index >= contact_num)
+	{
+		std::cout << "Wrong input. You failed to search." << std::endl;
 		return ;
 	}
 	phonebook[index].print_contact(index);
