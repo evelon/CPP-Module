@@ -16,8 +16,8 @@ private:
 	std::string		timestamp(void);
 public:
 	Logger(std::string file_name);
-	Logger();
-	void	log(std::string const & dest, std::string const & message);
+	Logger(void);
+	void	log(std::string const& dest, std::string const& message);
 };
 
 #endif

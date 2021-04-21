@@ -1,0 +1,6 @@
+replace
+*.txt
+*.replace
+*.log
+*.out
+*.o
