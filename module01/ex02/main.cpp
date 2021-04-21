@@ -3,6 +3,7 @@
 
 int	main()
 {
+	std::srand(time(NULL));
 	std::string	input;
 
 	std::cout << "What kind of zombie you like?" << std::endl;

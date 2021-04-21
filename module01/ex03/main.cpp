@@ -3,6 +3,8 @@
 
 int	main()
 {
+	std::srand(time(NULL));
+
 	std::string	input;
 	int			n;
 

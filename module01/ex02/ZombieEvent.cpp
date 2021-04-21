@@ -30,10 +30,6 @@ static time_t	get_current_time(void)
 
 Zombie	ZombieEvent::randomChump(void)
 {
-	static time_t	n = get_current_time();
-	n += n;
-	std::srand(n);
-
 	std::string	random_names[] = {"Alex", "Bart", "Christine", "Dart", "Eve", "Frankle", "Greg", "Harl", "Ian", "Jerome", "Karen", "Lynn", "Marlyn", "Niel", "Otto", "Park", "Quincy", "Rinsey", "Sam", "Thomas", "Ursula", "Volk", "Waldo", "Xander", "Yusuf", "Zanthippi"};
 	std::string	name;
 

@@ -4,11 +4,6 @@
 #
 .DS_Store
 leaks
-replace
-cato9tail
-*.txt
-*.replace
-*.log
 
 # Prerequisites
 *.d
