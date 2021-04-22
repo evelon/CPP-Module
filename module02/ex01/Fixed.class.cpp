@@ -15,7 +15,7 @@ Fixed::Fixed(const int n):
 Fixed::Fixed(const float f)
 {
 	float temp;
-	temp = f * (1 << (this->fraction - 1));
+	temp = f * (1 << this->fraction);
 	this->value = (int)roundf(temp);
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -63,7 +63,7 @@ int		Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->value / (1 << (this->fraction - 1)));
+	return ((float)this->value / (1 << this->fraction ));
 }
 
 std::ostream& operator<<(std::ostream& os, Fixed const& fixed)

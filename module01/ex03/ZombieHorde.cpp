@@ -1,13 +1,6 @@
 # include "ZombieHorde.hpp"
 # include <sstream>
 
-static time_t	get_current_time(void)
-{
-	time_t	n;
-	time(&n);
-	return (n);
-}
-
 static char	random_consonant(void)
 {
 	static char consonants[] = "bcdfghjklmnpqrstvwxyz";

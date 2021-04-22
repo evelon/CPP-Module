@@ -4,7 +4,7 @@
 int	main()
 {
 	std::string		greeting("HI THIS IS BRAIN");
-	std::string*	ptr;
+	std::string*	ptr = &greeting;
 	std::string&	ref = greeting;
 
 	std::cout << *ptr << std::endl;
