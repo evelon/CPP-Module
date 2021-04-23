@@ -57,6 +57,6 @@ typedef union
 	};
 }	float_cast;
 
-std::ostream&	operator<<(std::ostream& os, Fixed const& fixed);
+std::ostream&		operator<<(std::ostream& os, Fixed const& fixed);
 
 #endif

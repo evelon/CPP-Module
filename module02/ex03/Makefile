@@ -7,7 +7,7 @@ all: $(NAME)
 CPP = clang++
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = main.cpp \
+SRCS = eval_expr.cpp \
 	Fixed.class.cpp
 OBJS = $(SRCS:.cpp=.o)
 

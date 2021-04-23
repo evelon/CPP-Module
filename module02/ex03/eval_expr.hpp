@@ -1,2 +1,0 @@
-#include <Fixed.class.hpp>
-
