@@ -1,7 +1,27 @@
-#include "Fixed.class.hpp"
-#include "exprParser.hpp"
-#include <string>
-#include <sstream>
+#ifndef EXPRCALCULATOR_HPP
+# define EXPRCALCULATOR_HPP
+# include "Fixed.class.hpp"
+# include "exprParser.hpp"
+# include <string>
+# include <sstream>
+
+# define INITIAL_STACK_SIZE 8
+
+class exprStack
+{
+private:
+	std::string*	stack;
+	int				stackSize;
+	int				num;
+
+	void	expandStack(void);
+
+public:
+	exprStack(void);
+	~exprStack(void);
+	void		push(std::string str);
+	std::string	pop(void);
+};
 
 typedef	struct t_form
 {
@@ -11,7 +31,5 @@ typedef	struct t_form
 }				form;
 
 form	interpretor(std::string str);
-Fixed	exprMultiplier(Fixed fixed, std::istringstream& iss);
-Fixed	exprCalculator(std::istringstream& iss);
 
-Fixed	exprCalc
+#endif

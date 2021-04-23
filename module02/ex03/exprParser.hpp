@@ -1,3 +1,6 @@
+#ifndef EXPRPARSER_HPP
+# define EXPRPARSER_HPP
+
 #include <string>
 #include <sstream>
 
@@ -8,6 +11,10 @@ typedef enum calc_type
 	bracket_open,
 	bracket_close,
 	operator_type,
+	add,
+	sub,
+	mul,
+	div,
 	number
 };
 
@@ -29,3 +36,5 @@ public:
 	void	parseNext(std::string& str);
 	bool	endParse(void);
 };
+
+#endif

@@ -1,131 +1,84 @@
 #include "exprCalculator.hpp"
 
-form	interpretor(std::string str)
+exprStack::exprStack(void):
+	stack(new std::string[INITIAL_STACK_SIZE]), stackSize(INITIAL_STACK_SIZE), num(0) {}
+
+exprStack::~exprStack(void)
 {
-	std::istringstream	iss(str);
+	delete[] stack;
+}
+
+void	exprStack::expandStack(void)
+{
+	this->stackSize *= 2;
+	std::string*	new_stack = new std::string[stackSize];
+
+	for (int i = 0; i < num; i++)
+		new_stack[i] = this->stack[i];
+	delete[] this->stack;
+	this->stack = new_stack;
+}
+
+void		exprStack::push(std::string str)
+{
+	if (num == stackSize)
+		this->expandStack();
+	this->stack[num++ - 1] = str;
+}
+
+std::string	exprStack::pop(void)
+{
+	std::string	temp;
+	if (num == 0)
+		return (std::string());
+	temp = this->stack[num - 1];
+	this->stack[num - 1] = std::string();
+	return (temp);
+}
+
+std::stringstream	postfixTranslator(std::istringstream iss)
+{
+	exprStack			stack;
+	std::stringstream	ss;
+	std::string			element;
+	std::string			temp;
 	form				form;
 
-	float	num;
-	iss >> num;
-	if (iss.rdstate == iss.good())
+	while (iss.tellg() != -1)
 	{
-		form.type = number;
-		form.num = num;
-		return (form);
+		iss >> element;
+		form = interpretor(element);
+		if (form.oper_type == number)
+			ss << element;
+		else if (form.oper_type == bracket_open || form.oper_type == mul || form.oper_type == div)
+			stack.push(element);
+		else if (form.oper_type == add || form.oper_type == sub)
+		{
+			while (1)
+			{
+				temp = stack.pop();
+				if (temp == std::string())
+					break ;
+				else if (!temp.compare("("))
+				{
+					stack.push(temp);
+					break ;
+				}
+				ss << temp;
+			}
+		}
+		else if (form.oper_type == bracket_close)
+		{
+			while (1)
+			{
+				temp = stack.pop();
+				if (temp.compare("("))
+					break ;
+				ss << temp;
+			}
+		}
+		else
+			break ;
 	}
-	if (!str.compare("+"))
-	{
-		form.type = operator_type;
-		form.oper_type = '+';
-		return (form);
-	}
-	if (!str.compare("-"))
-	{
-		form.type = operator_type;
-		form.oper_type = '-';
-		return (form);
-	}
-	if (!str.compare("*"))
-	{
-		form.type = operator_type;
-		form.oper_type = '*';
-		return (form);
-	}
-	if (!str.compare("/"))
-	{
-		form.type = operator_type;
-		form.oper_type = '/';
-		return (form);
-	}
-	if (!str.compare("("))
-	{
-		form.type = bracket_open;
-		return (form);
-	}
-	if (!str.compare(")"))
-	{
-		form.type = bracket_close;
-		return (form);
-	}
-	return (form);
-}
 
-Fixed	exprAdder(Fixed fixed, std::istringstream& iss)
-{
-	std::string	temp;
-
-	iss >> temp;
-	form form = interpretor(temp);
-	if (form.type = bracket_open)
-		return (fixed + exprCalculator(iss));
-	if (form.type = number)
-		return (fixed + Fixed(form.num));
-}
-
-Fixed	exprSubstractor(Fixed fixed, std::istringstream& iss)
-{
-	std::string	temp;
-
-	iss >> temp;
-	form form = interpretor(temp);
-	if (form.type = bracket_open)
-		return (fixed - exprCalculator(iss));
-
-	Fixed		next(form.num);
-
-	iss >> temp;
-	form = interpretor(temp);
-	return (fixed - Fixed(form.num));
-}
-
-Fixed	exprMultiplier(Fixed fixed, std::istringstream& iss)
-{
-	std::string	temp;
-
-	iss >> temp;
-	form form = interpretor(temp);
-	if (form.type = bracket_open)
-		return (fixed * exprCalculator(iss));
-	if (form.type = number)
-		return (fixed * Fixed(form.num));
-}
-
-Fixed	exprDivider(Fixed fixed, std::istringstream& iss)
-{
-	std::string	temp;
-
-	iss >> temp;
-	form form = interpretor(temp);
-	if (form.type = bracket_open)
-		return (fixed / exprCalculator(iss));
-	if (form.type = number)
-		return (fixed / Fixed(form.num));
-}
-
-Fixed	exprCalculator(Fixed fixed, std::istringstream& iss)
-{
-	std::string	temp;
-	form		form;
-
-	iss >> temp;
-
-}
-
-Fixed	exprCalculator(std::istringstream& iss)
-{
-	std::string	temp;
-	form		form;
-
-	iss >> temp;
-	Fixed	fixed(stof(temp));
-	if (iss.tellg() == -1 && !temp.compare(")"))
-		return (fixed);
-	iss >> temp;
-	form = interpretor(temp);
-
-	while (iss.tellg() != -1 || temp.compare(")"))
-	{
-
-
-	}
 }
