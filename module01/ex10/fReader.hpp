@@ -17,6 +17,7 @@ public:
 	~fReader(void);
 	void	changeFile(std::string fileName);
 	void	changeFile(char* fileName);
+	bool	isOpen(void);
 	void	outputFile(void);
 };
 

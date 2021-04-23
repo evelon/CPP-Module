@@ -25,6 +25,11 @@ void	fReader::changeFile(char* fileName)
 	ifs.open(fileName);
 }
 
+bool	fReader::isOpen(void)
+{
+	return (ifs.is_open());
+}
+
 void	fReader::outputFile(void)
 {
 	std::string	line;

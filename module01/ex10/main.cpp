@@ -17,6 +17,9 @@ int	cat_from_cin(void)
 
 int	main(int argc, char* argv[])
 {
+	int	ret;
+
+	ret = 0;
 	if (argc == 1)
 		return (cat_from_cin());
 	else
@@ -25,8 +28,14 @@ int	main(int argc, char* argv[])
 		for (int i = 1; i < argc; i++)
 		{
 			freader.changeFile(argv[i]);
-			freader.outputFile();
+			if (!freader.isOpen())
+			{
+				std::cout << "cato9tail: " << argv[i] << ": No such file or directory" << std::endl;
+				ret = 1;
+			}
+			else
+				freader.outputFile();
 		}
 	}
-	return (0);
+	return (ret);
 }
