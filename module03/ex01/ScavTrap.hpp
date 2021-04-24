@@ -1,12 +1,9 @@
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <string>
-# include <iostream>
-# include <cstdlib>
-# include "Point.hpp"
+# include "FragTrap.cpp"
 
-class	FragTrap
+class	ScavTrap : public FragTrap
 {
 private:
 	Point	hitPoints;

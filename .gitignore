@@ -4,6 +4,7 @@
 #
 .DS_Store
 leaks
+*.dSYM
 
 # Prerequisites
 *.d
