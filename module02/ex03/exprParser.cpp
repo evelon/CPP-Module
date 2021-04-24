@@ -1,4 +1,4 @@
-#include <Fixed.class.hpp>
+#include "Fixed.class.hpp"
 #include "exprParser.hpp"
 
 bool	exprParser::parseOne(calc_type new_one)
@@ -17,7 +17,7 @@ bool	exprParser::parseOne(calc_type new_one)
 		this->bracketLevel++;
 	if (new_one == bracket_close)
 		this->bracketLevel--;
-	if (bracketLevel < 0)
+	if (this->bracketLevel < 0)
 		return (false);
 	return (true);
 }
@@ -34,7 +34,7 @@ calc_type	exprParser::typeDetect(std::string& str)
 	if (!str.compare("+") || !str.compare("-") || !str.compare("*") || !str.compare("/"))
 		return (operator_type);
 	iss >> f_detector;
-	if (iss.rdstate() == iss.good())
+	if (!iss.fail())
 		return (number);
 	return (error);
 }
@@ -42,20 +42,21 @@ calc_type	exprParser::typeDetect(std::string& str)
 exprParser::exprParser(void):
 	bracketLevel(0), type(none), ss() {}
 
-exprParser::exprParser(std::string& str)
+exprParser::exprParser(std::string& str):
+	bracketLevel(0), type(none), ss(str)
 {
 	std::string	temp;
 
 	this->result = true;
-	ss << str;
-	while (ss.tellg != -1)
+	ss >> temp;
+	while (ss.tellg() != -1)
 	{
-		ss >> temp;
-		if (!this->parseOne(this->typeDetect(temp)));
+		if (!this->parseOne(this->typeDetect(temp)))
 		{
 			this->result = false;
 			return ;
 		}
+		ss >> temp;
 	}
 	return ;
 }
@@ -69,10 +70,10 @@ void	exprParser::parseNext(std::string& str)
 
 	std::string	temp;
 	ss << str;
-	while (ss.tellg != -1)
+	while (ss.tellg() != -1)
 	{
 		ss >> temp;
-		if (!this->parseOne(this->typeDetect(temp)));
+		if (!this->parseOne(this->typeDetect(temp)))
 		{
 			this->result = false;
 			return ;

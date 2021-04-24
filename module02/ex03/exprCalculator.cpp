@@ -1,17 +1,20 @@
 #include "exprCalculator.hpp"
 
-exprStack::exprStack(void):
-	stack(new std::string[INITIAL_STACK_SIZE]), stackSize(INITIAL_STACK_SIZE), num(0) {}
+template	<class T>
+exprStack<T>::exprStack(void):
+	stack(new T[INITIAL_STACK_SIZE]), stackSize(INITIAL_STACK_SIZE), num(0) {}
 
-exprStack::~exprStack(void)
+template	<class T>
+exprStack<T>::~exprStack(void)
 {
 	delete[] stack;
 }
 
-void	exprStack::expandStack(void)
+template	<class T>
+void	exprStack<T>::expandStack(void)
 {
 	this->stackSize *= 2;
-	std::string*	new_stack = new std::string[stackSize];
+	T*	new_stack = new T[stackSize];
 
 	for (int i = 0; i < num; i++)
 		new_stack[i] = this->stack[i];
@@ -19,66 +22,136 @@ void	exprStack::expandStack(void)
 	this->stack = new_stack;
 }
 
-void		exprStack::push(std::string str)
+template	<class T>
+void		exprStack<T>::push(T str)
 {
 	if (num == stackSize)
 		this->expandStack();
 	this->stack[num++ - 1] = str;
 }
 
-std::string	exprStack::pop(void)
+template	<class T>
+T	exprStack<T>::pop(void)
 {
-	std::string	temp;
+	T	temp;
 	if (num == 0)
-		return (std::string());
+		return (T());
 	temp = this->stack[num - 1];
-	this->stack[num - 1] = std::string();
+	this->stack[num - 1] = T();
 	return (temp);
 }
 
-std::stringstream	postfixTranslator(std::istringstream iss)
+form	interpretor(std::string str)
 {
-	exprStack			stack;
-	std::stringstream	ss;
-	std::string			element;
-	std::string			temp;
 	form				form;
+	std::istringstream	iss(str);
+	float				f;
+
+	iss >> f;
+	if (!iss.fail())
+	{
+		form.type = number;
+		form.num = Fixed(f);
+		return (form);
+	}
+	if (!str.compare("("))
+		form.type = bracket_open;
+	else if (!str.compare(")"))
+		form.type = bracket_close;
+	else if (!str.compare("+"))
+		form.type = addition;
+	else if (!str.compare("-"))
+		form.type = subtraction;
+	else if (!str.compare("*"))
+		form.type = multiplication;
+	else if (!str.compare("/"))
+		form.type = division;
+	else
+		form.type = none;
+	return (form);
+}
+
+void	postfixTranslator(std::stringstream& ss, std::istringstream& iss)
+{
+	exprStack<std::string>	stack;
+	std::string				element;
+	std::string				temp;
+	form					form;
 
 	while (iss.tellg() != -1)
 	{
 		iss >> element;
 		form = interpretor(element);
-		if (form.oper_type == number)
+		if (form.type == number) // if element is number
 			ss << element;
-		else if (form.oper_type == bracket_open || form.oper_type == mul || form.oper_type == div)
-			stack.push(element);
-		else if (form.oper_type == add || form.oper_type == sub)
+		else if (form.type == bracket_open || form.type == multiplication || form.type == division) // if it is "(", "*", or "/",
+			stack.push(element); // push to stack.
+		else if (form.type == addition || form.type == subtraction) // it it is "+" or "-",
 		{
 			while (1)
 			{
-				temp = stack.pop();
-				if (temp == std::string())
+				temp = stack.pop(); // keep on popping from stack
+				if (temp == std::string()) // if everything has popped, break.
 					break ;
-				else if (!temp.compare("("))
+				else if (!temp.compare("(")) // if "(" popped out,
 				{
-					stack.push(temp);
+					stack.push(temp); // push it back and break.
 					break ;
 				}
-				ss << temp;
+				ss << temp; // output the popped element
 			}
+			stack.push(element);
 		}
-		else if (form.oper_type == bracket_close)
+		else if (form.type == bracket_close) // if it is ")", an opening bracket.
 		{
 			while (1)
 			{
-				temp = stack.pop();
-				if (temp.compare("("))
+				temp = stack.pop(); // keep on popping from stack
+				if (!temp.compare("(")) // till it is a closing bracket.
 					break ;
 				ss << temp;
 			}
 		}
-		else
-			break ;
+		else // if nothing left
+			break ; // then output is over.
 	}
+	return ;
+}
 
+Fixed	postfixCalculator(std::stringstream& ss)
+{
+	exprStack<Fixed>	stack;
+	std::string			element;
+	form				form;
+	Fixed				temp;
+
+	while (1)
+	{
+		ss >> element;
+		if (ss.tellg() == -1)
+			break ;
+		form = interpretor(element);
+		switch(form.type)
+		{
+			case	(number):
+				stack.push(form.num);
+				break ;
+			case	(addition):
+				stack.push(stack.pop() + stack.pop());
+				break;
+			case	(subtraction):
+				temp = stack.pop();
+				stack.push(stack.pop() - temp);
+				break;
+			case	(multiplication):
+				stack.push(stack.pop() * stack.pop());
+				break;
+			case	(division):
+				temp = stack.pop();
+				stack.push(stack.pop() / temp);
+			default:
+				continue ;
+		}
+	}
+	return (stack.pop());
 }

@@ -7,10 +7,11 @@
 
 # define INITIAL_STACK_SIZE 8
 
+template	<class T>
 class exprStack
 {
 private:
-	std::string*	stack;
+	T*	stack;
 	int				stackSize;
 	int				num;
 
@@ -19,17 +20,18 @@ private:
 public:
 	exprStack(void);
 	~exprStack(void);
-	void		push(std::string str);
-	std::string	pop(void);
+	void		push(T t);
+	T			pop(void);
 };
 
 typedef	struct t_form
 {
 	calc_type	type;
-	char		oper_type;
 	Fixed		num;
 }				form;
 
 form	interpretor(std::string str);
+void	postfixTranslator(std::stringstream& ss, std::istringstream& iss);
+Fixed	postfixCalculator(std::stringstream& ss);
 
 #endif

@@ -4,17 +4,17 @@
 #include <string>
 #include <sstream>
 
-typedef enum calc_type
+enum calc_type
 {
 	error = -1,
 	none,
 	bracket_open,
 	bracket_close,
 	operator_type,
-	add,
-	sub,
-	mul,
-	div,
+	addition,
+	subtraction,
+	multiplication,
+	division,
 	number
 };
 
