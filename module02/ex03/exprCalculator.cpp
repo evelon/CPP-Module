@@ -23,11 +23,11 @@ void	exprStack<T>::expandStack(void)
 }
 
 template	<class T>
-void		exprStack<T>::push(T str)
+void	exprStack<T>::push(T t)
 {
 	if (num == stackSize)
 		this->expandStack();
-	this->stack[num++ - 1] = str;
+	this->stack[num++] = t;
 }
 
 template	<class T>
@@ -37,8 +37,16 @@ T	exprStack<T>::pop(void)
 	if (num == 0)
 		return (T());
 	temp = this->stack[num - 1];
-	this->stack[num - 1] = T();
+	this->stack[num-- - 1] = T();
 	return (temp);
+}
+
+template	<class T>
+void	exprStack<T>::lookStack(void)
+{
+	for (int i = 0; i < this->num; i++)
+		std::cout << this->stack[i] << '\n';
+	std::cout << std::flush;
 }
 
 form	interpretor(std::string str)
@@ -78,12 +86,12 @@ void	postfixTranslator(std::stringstream& ss, std::istringstream& iss)
 	std::string				temp;
 	form					form;
 
-	while (iss.tellg() != -1)
+	do
 	{
 		iss >> element;
 		form = interpretor(element);
 		if (form.type == number) // if element is number
-			ss << element;
+			ss << element << ' ';
 		else if (form.type == bracket_open || form.type == multiplication || form.type == division) // if it is "(", "*", or "/",
 			stack.push(element); // push to stack.
 		else if (form.type == addition || form.type == subtraction) // it it is "+" or "-",
@@ -98,7 +106,7 @@ void	postfixTranslator(std::stringstream& ss, std::istringstream& iss)
 					stack.push(temp); // push it back and break.
 					break ;
 				}
-				ss << temp; // output the popped element
+				ss << temp << ' '; // output the popped element
 			}
 			stack.push(element);
 		}
@@ -109,11 +117,18 @@ void	postfixTranslator(std::stringstream& ss, std::istringstream& iss)
 				temp = stack.pop(); // keep on popping from stack
 				if (!temp.compare("(")) // till it is a closing bracket.
 					break ;
-				ss << temp;
+				ss << temp << ' ';
 			}
 		}
-		else // if nothing left
-			break ; // then output is over.
+	}
+	while (iss.tellg() != -1);
+
+	while (1)
+	{
+		temp = stack.pop();
+		if (temp == std::string())
+			break ;
+		ss << temp << ' ';
 	}
 	return ;
 }
@@ -125,11 +140,9 @@ Fixed	postfixCalculator(std::stringstream& ss)
 	form				form;
 	Fixed				temp;
 
-	while (1)
+	do
 	{
 		ss >> element;
-		if (ss.tellg() == -1)
-			break ;
 		form = interpretor(element);
 		switch(form.type)
 		{
@@ -150,8 +163,9 @@ Fixed	postfixCalculator(std::stringstream& ss)
 				temp = stack.pop();
 				stack.push(stack.pop() / temp);
 			default:
-				continue ;
+				;
 		}
 	}
+	while (ss.tellg() != -1);
 	return (stack.pop());
 }

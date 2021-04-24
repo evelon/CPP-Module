@@ -66,12 +66,12 @@ bool	Fixed::operator!=(Fixed const& fixed)
 
 Fixed	Fixed::operator+(Fixed const& fixed)
 {
-	return(Fixed(this->getRawBits() + fixed.getRawBits()));
+	return(Fixed((float)(this->getRawBits() + fixed.getRawBits()) / (1 << this->fraction)));
 }
 
 Fixed	Fixed::operator-(Fixed const& fixed)
 {
-	return(Fixed(this->getRawBits() - fixed.getRawBits()));
+	return(Fixed((float)(this->getRawBits() - fixed.getRawBits()) / (1 << this->fraction)));
 }
 
 Fixed	Fixed::operator*(Fixed const& fixed)

@@ -22,6 +22,7 @@ public:
 	~exprStack(void);
 	void		push(T t);
 	T			pop(void);
+	void		lookStack(void);
 };
 
 typedef	struct t_form

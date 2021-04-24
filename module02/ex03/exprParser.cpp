@@ -11,14 +11,13 @@ bool	exprParser::parseOne(calc_type new_one)
 		return (false);
 	if (this->type == operator_type && !(new_one == bracket_open || new_one == number))
 		return (false);
-	if (this->type == number && !(new_one == operator_type))
+	if (this->type == number && !(new_one == operator_type || new_one == bracket_close))
 		return (false);
 	if (new_one == bracket_open)
 		this->bracketLevel++;
 	if (new_one == bracket_close)
 		this->bracketLevel--;
-	if (this->bracketLevel < 0)
-		return (false);
+	this->type = new_one;
 	return (true);
 }
 
@@ -45,45 +44,36 @@ exprParser::exprParser(void):
 exprParser::exprParser(std::string& str):
 	bracketLevel(0), type(none), ss(str)
 {
-	std::string	temp;
-
-	this->result = true;
-	ss >> temp;
-	while (ss.tellg() != -1)
+	if (str.length() == 0)
 	{
+		this->result = false;
+		return ;
+	}
+
+	std::string	temp;
+	this->result = true;
+	do
+	{
+		ss >> temp;
 		if (!this->parseOne(this->typeDetect(temp)))
 		{
 			this->result = false;
 			return ;
 		}
-		ss >> temp;
 	}
+	while (ss.tellg() != -1);
+	calc_type	type = this->typeDetect(temp);
+	if (type != bracket_close && type != number)
+		this->result = false;
 	return ;
 }
 
 exprParser::~exprParser(void) {}
 
-void	exprParser::parseNext(std::string& str)
-{
-	if (!this->result)
-		return ;
-
-	std::string	temp;
-	ss << str;
-	while (ss.tellg() != -1)
-	{
-		ss >> temp;
-		if (!this->parseOne(this->typeDetect(temp)))
-		{
-			this->result = false;
-			return ;
-		}
-	}
-}
 
 bool	exprParser::endParse(void)
 {
-	if (this->result && this->bracketLevel != 0)
+	if (this->bracketLevel != 0)
 		this->result = false;
 	this->bracketLevel = 0;
 	this->type = none;

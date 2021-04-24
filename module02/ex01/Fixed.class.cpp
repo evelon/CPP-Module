@@ -25,12 +25,6 @@ Fixed::~Fixed(void)
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed& fixed)
-{
-	std::cout << "Copy constructor called" << std::endl;
-	*this = fixed;
-}
-
 Fixed::Fixed(Fixed const& fixed)
 {
 	std::cout << "Copy constructor called" << std::endl;

@@ -33,7 +33,6 @@ public:
 	exprParser(void);
 	exprParser(std::string& str);
 	~exprParser(void);
-	void	parseNext(std::string& str);
 	bool	endParse(void);
 };
 

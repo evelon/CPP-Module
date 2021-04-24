@@ -9,6 +9,11 @@ int main(int argc, char* argv[])
 	ret = 0;
 	if (argc == 1)
 		return (ret);
+	if (!isdigit(argv[0][0]) && !(argv[0][0] != '('))
+	{
+		std::cout << "Error: invalid expression" << std::endl;
+		return (1);
+	}
 	for (int i = 1; i < argc; i++)
 	{
 		temp = std::string(argv[i]);
