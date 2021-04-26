@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name):
+ScavTrap::ScavTrap(std::string const& name):
 	ClapTrap("SC4V-TP", name, 100, 100, 50, 50, 1, 20, 15, 3)
 {}
 
@@ -25,5 +25,10 @@ ScavTrap&	ScavTrap::operator=(ScavTrap const& scavtrap)
 
 void	ScavTrap::challengeNewcomer(void)
 {
-	std::cout << this->type << " <" << this->getName() << "> :" << this->challenges[rand() % 5] << std::endl;
+	if (this->hitPoints == 0)
+	{
+		std::cout << this->getTypeNName() << " is broken.\n";
+		return ;
+	}
+	std::cout << this->getTypeNName() << " :" << this->challenges[rand() % 5] << std::endl;
 }

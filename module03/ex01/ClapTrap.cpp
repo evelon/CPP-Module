@@ -51,25 +51,35 @@ std::string	ClapTrap::getName(void)
 
 void	ClapTrap::rangedAttack(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << this->type << " <" << name << "> is broken." << std::endl;
+		return ;
+	}
 	std::cout << this->type << " <" << this->name << "> attacks <" << target << \
 	"> at range, causing <" << this->rangedAttackDamage << "> points of damage!" << std::endl;
 }
 
 void	ClapTrap::meleeAttack(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << this->type << " <" << name << "> is broken." << std::endl;
+		return ;
+	}
 	std::cout << this->type << " <" << this->name << "> attacks <" << target << \
 	"> right behind, causing <" << this->meleeAttackDamage << "> points of damage!" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	Point	damage(Point(amount) - this->armorDamageReduction);
-	std::cout << this->type << " <" << this->name << "> gets attacked, taking <" << damage << "> damages." << std::endl;
 	if (this->hitPoints == 0)
 	{
 		std::cout << this->type << " <" << name << "> has already been broken." << std::endl;
 		return ;
 	}
+	Point	damage(Point(amount) - this->armorDamageReduction);
+	std::cout << this->type << " <" << this->name << "> gets attacked, taking <" << damage << "> damages." << std::endl;
 	this->hitPoints -= damage;
 	if (this->hitPoints == 0)
 		std::cout << this->type << " <" << this->name << "> got broken." << std::endl;
@@ -85,7 +95,10 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	this->hitPoints += Point(amount);
-	if (this->hitPoints == 100)
+	if (this->hitPoints >= this->maxHitPoints)
+	{
+		this->hitPoints = this->maxHitPoints;
 		std::cout << this->type << " <" << this->name << "> is fully repaired." << std::endl;
+	}
 	return ;
 }

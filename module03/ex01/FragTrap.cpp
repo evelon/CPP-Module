@@ -26,6 +26,11 @@ FragTrap&	FragTrap::operator=(FragTrap const& fragtrap)
 
 void	FragTrap::vaulthunter_dot_exe(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << this->type << " <" << this->getName() << "> is broken." << std::endl;
+		return ;
+	}
 	if (this->energyPoints < 25)
 	{
 		std::cout << "Not enough energy." << std::endl;

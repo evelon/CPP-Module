@@ -32,7 +32,7 @@ int	encount_FragTrap(std::string& target)
 		if (std::cin.eof())
 			return (1) ;
 		if (std::cin.fail())
-			no_such_entry();
+			return (no_such_entry());
 		switch (select)
 		{
 			case	0:
@@ -65,7 +65,7 @@ int	encount_FragTrap(std::string& target)
 				fragtrap.beRepaired(select);
 				break ;
 			default:
-				no_such_entry();
+				return (no_such_entry());
 		}
 	}
 }
@@ -95,7 +95,7 @@ int	encount_ScavTrap(std::string& target)
 		if (std::cin.eof())
 			return (1) ;
 		if (std::cin.fail())
-			no_such_entry();
+			return (no_such_entry());
 		switch (select)
 		{
 			case	0:
@@ -128,7 +128,7 @@ int	encount_ScavTrap(std::string& target)
 				scavtrap.beRepaired(select);
 				break ;
 			default:
-				no_such_entry();
+				return (no_such_entry());
 		}
 	}
 }
@@ -151,7 +151,7 @@ int	main(void)
 	if (std::cin.eof())
 		return (1) ;
 	if (std::cin.fail())
-		no_such_entry();
+		return (no_such_entry());
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	switch (select)
 	{

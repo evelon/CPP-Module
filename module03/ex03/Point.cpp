@@ -4,11 +4,7 @@ Point::Point():
 	num(0) {}
 
 Point::Point(unsigned int un):
-	num(un)
-{
-	if (num >= 100)
-		this->num = 100;
-}
+	num(un) {}
 
 Point::~Point() {}
 
@@ -26,8 +22,6 @@ Point&	Point::operator=(Point const& point)
 Point	Point::operator+(Point const& point) const
 {
 	Point num(this->getNum() + point.getNum());
-	if (num >= 100)
-		num = 100;
 	return (num);
 }
 

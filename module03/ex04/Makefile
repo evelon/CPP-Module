@@ -13,6 +13,7 @@ SRCS = \
 	FragTrap.cpp \
 	ScavTrap.cpp \
 	NinjaTrap.cpp \
+	SuperTrap.cpp \
 	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

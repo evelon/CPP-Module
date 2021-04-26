@@ -39,18 +39,33 @@ std::string	FragTrap::getName(void)
 
 void	FragTrap::rangedAttack(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << "FR4G-TP <" << this->name << "> is broken. It cannot do anything." << std::endl;
+		return ;
+	}
 	std::cout << "FR4G-TP <" << this->name << "> attacks <" << target << \
 	"> at range, causing <" << this->rangedAttackDamage << "> points of damage!" << std::endl;
 }
 
 void	FragTrap::meleeAttack(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << "FR4G-TP <" << this->name << "> is broken. It cannot do anything." << std::endl;
+		return ;
+	}
 	std::cout << "FR4G-TP <" << this->name << "> attacks <" << target << \
 	"> right behind, causing <" << this->meleeAttackDamage << "> points of damage!" << std::endl;
 }
 
 void	FragTrap::vaulthunter_dot_exe(std::string const& target)
 {
+	if (this->hitPoints == 0)
+	{
+		std::cout << "FR4G-TP <" << this->name << "> is broken. It cannot do anything." << std::endl;
+		return ;
+	}
 	if (this->energyPoints < 25)
 	{
 		std::cout << "Not enough energy." << std::endl;
@@ -68,13 +83,13 @@ void	FragTrap::vaulthunter_dot_exe(std::string const& target)
 
 void	FragTrap::takeDamage(unsigned int amount)
 {
-	Point	damage(Point(amount) - this->armorDamageReduction);
-	std::cout << "FR4G-TP <" << this->name << "> gets attacked, taking <" << damage << "> damages." << std::endl;
 	if (this->hitPoints == 0)
 	{
 		std::cout << "<" << name << "> has already been broken." << std::endl;
 		return ;
 	}
+	Point	damage(Point(amount) - this->armorDamageReduction);
+	std::cout << "FR4G-TP <" << this->name << "> gets attacked, taking <" << damage << "> damages." << std::endl;
 	this->hitPoints -= damage;
 	if (this->hitPoints == 0)
 		std::cout << "<" << this->name << "> got broken." << std::endl;

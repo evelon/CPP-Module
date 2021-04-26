@@ -1,8 +1,10 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name):
+ScavTrap::ScavTrap(std::string const& name):
 	ClapTrap("SC4V-TP", name, 100, 100, 50, 50, 1, 20, 15, 3)
-{}
+{
+	std::cout << "A scavtrap is born.\n";
+}
 
 std::string const	ScavTrap::challenges[] = {
 	"마라 맵기 5단계를 먹어라....",
@@ -12,7 +14,10 @@ std::string const	ScavTrap::challenges[] = {
 	"총에 한 번 살살 맞아봐라..."
 };
 
-ScavTrap::~ScavTrap() {}
+ScavTrap::~ScavTrap()
+{
+	std::cout << "A scavtrap dies.\n";
+}
 
 ScavTrap::ScavTrap(ScavTrap const& scavtrap):
 	ClapTrap(scavtrap) {}
@@ -25,10 +30,10 @@ ScavTrap&	ScavTrap::operator=(ScavTrap const& scavtrap)
 
 void	ScavTrap::challengeNewcomer(void)
 {
-	if (this->hitPoints == 0)
+	if (this->isBroken())
 	{
-		std::cout << this->type << " <" << this->getName() << "> is broken." << std::endl;
+		std::cout << this->getTypeNName() << " is broken.\n";
 		return ;
 	}
-	std::cout << this->type << " <" << this->getName() << "> :" << this->challenges[rand() % 5] << std::endl;
+	std::cout << this->getTypeNName() << " :" << this->challenges[rand() % 5] << std::endl;
 }

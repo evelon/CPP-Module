@@ -3,8 +3,9 @@
 
 # include "FragTrap.hpp"
 # include "ScavTrap.hpp"
+// # include "SuperTrap.hpp"
 
-class	NinjaTrap: public ClapTrap
+class	NinjaTrap: virtual public ClapTrap
 {
 public:
 	NinjaTrap(std::string const& name);
@@ -15,6 +16,7 @@ public:
 	void	ninjaShoeBox(FragTrap& fragtrap);
 	void	ninjaShoeBox(ScavTrap& scavtrap);
 	void	ninjaShoeBox(NinjaTrap& ninjatrap);
+	// void	ninjaShoeBox(SuperTrap& supertrap);
 };
 
 #endif

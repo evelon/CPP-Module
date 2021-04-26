@@ -10,9 +10,14 @@ std::string const	FragTrap::quotes[] = {
 
 FragTrap::FragTrap(std::string const& name):
 	ClapTrap("FR4G-TP", name, 100, 100, 100, 100, 1, 30, 20, 5)
-{}
+{
+	std::cout << "A fraptrap is born.\n";
+}
 
-FragTrap::~FragTrap() {}
+FragTrap::~FragTrap()
+{
+	std::cout << "A fraptrap dies.\n";
+}
 
 FragTrap::FragTrap(FragTrap const& fragtrap):
 	ClapTrap(fragtrap) {}
@@ -23,11 +28,26 @@ FragTrap&	FragTrap::operator=(FragTrap const& fragtrap)
 	return (*this);
 }
 
+void	FragTrap::rangedAttack(std::string const& target)
+{
+	ClapTrap::rangedAttack(target);
+}
+
+void	FragTrap::meleeAttack(std::string const& target)
+{
+	ClapTrap::meleeAttack(target);
+}
+
 void	FragTrap::vaulthunter_dot_exe(std::string const& target)
 {
+	if (this->isBroken())
+	{
+		std::cout << this->getTypeNName() << " is broken.\n";
+		return;
+	}
 	if (this->energyPoints < 25)
 	{
-		std::cout << "Not enough energy." << std::endl;
+		std::cout << "Not enough energy.\n";
 		return ;
 	}
 
