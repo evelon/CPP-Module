@@ -1,5 +1,5 @@
 #ifndef PEON_HPP
-# define PEON
+# define PEON_HPP
 
 # include "Victim.hpp"
 
@@ -9,10 +9,11 @@ private:
 	void	bornMsg(void);
 
 public:
-	Peon(std::string name);
+	Peon(std::string name = "peon");
 	~Peon();
 	Peon(Peon const& peon);
 	Peon&	operator=(Peon const& peon);
+	virtual void 	getPolymorphed(void) const override;
 };
 
 #endif

@@ -1,17 +1,16 @@
 #ifndef SORCERER_HPP
 # define SORCERER_HPP
 
-# include <iostream>
+# include "Person.hpp"
 # include "Victim.hpp"
 
-class	Sorcerer
+class	Sorcerer: virtual protected Person
 {
-private:
-	std::string	name;
+protected:
 	std::string	title;
 
 public:
-	Sorcerer(std::string name, std::string title);
+	Sorcerer(std::string name = "sorcerer", std::string title = "title");
 	~Sorcerer();
 	Sorcerer(Sorcerer const& sorcerer);
 	Sorcerer&	operator=(Sorcerer const& sorcerer);
@@ -20,6 +19,6 @@ public:
 	void polymorph(Victim const& victim) const;
 };
 
-std::ostream&	operator<<(std::ostream const& os, Sorcerer const& sorcerer);
+std::ostream&	operator<<(std::ostream& os, Sorcerer const& sorcerer);
 
 #endif

@@ -1,7 +1,7 @@
 #include "Sorcerer.hpp"
 
-Sorcerer::Sorcerer(std::string name = "name", std::string title = "title"):
-	name(name), title(title)
+Sorcerer::Sorcerer(std::string name, std::string title):
+	Person(name), title(title)
 {
 	std::cout << this->name << ", " << this->title << ", is born!\n";
 }
@@ -21,6 +21,7 @@ Sorcerer&	Sorcerer::operator=(Sorcerer const& sorcerer)
 {
 	this->name = sorcerer.name;
 	this->title = sorcerer.title;
+	return (*this);
 }
 
 std::string	Sorcerer::getName(void) const

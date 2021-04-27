@@ -1,12 +1,7 @@
 #include "Victim.hpp"
 
-Victim::Victim(std::string name = "name"):
-	name(name)
-{
-	this->bornMsg();
-}
-
-void	Victim::bornMsg(void)
+Victim::Victim(std::string name):
+	Person(name)
 {
 	std::cout << "Some random victim called " << this->name << " just appeared!\n";
 }
@@ -39,5 +34,6 @@ void	Victim::getPolymorphed(void) const
 
 std::ostream&	operator<<(std::ostream& os, Victim const& victim)
 {
-	os << "I'm " << victim.getName() << " and I lie otters!\n";
+	os << "I'm " << victim.getName() << " and I like otters!\n";
+	return (os);
 }
