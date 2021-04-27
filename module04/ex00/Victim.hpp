@@ -5,12 +5,13 @@
 
 class	Victim
 {
-private:
+protected:
 	std::string	name;
+	virtual void	bornMsg(void);
 
 public:
 	Victim(std::string name);
-	~Victim();
+	virtual ~Victim();
 	Victim(Victim const& victim);
 	Victim&	operator=(Victim const& victim);
 	std::string	getName(void) const;

@@ -6,19 +6,13 @@
 class	Peon: public Victim
 {
 private:
-	/* data */
+	void	bornMsg(void);
+
 public:
 	Peon(std::string name);
 	~Peon();
+	Peon(Peon const& peon);
+	Peon&	operator=(Peon const& peon);
 };
-
-Peon::Peon(/* args */)
-{
-}
-
-Peon::~Peon()
-{
-}
-
 
 #endif
