@@ -25,9 +25,9 @@ int				Enemy::getHP(void) const
 	return (this->hitPoints);
 }
 
-void	Enemy::takeDamage(int damage)
-{
-	if (this->hitPoints < 0)
-		return ;
-	hitPoints -= damage;
-}
+// void	Enemy::takeDamage(int damage)
+// {
+// 	if (this->hitPoints <= 0)
+// 		return ;
+// 	hitPoints -= damage;
+// }

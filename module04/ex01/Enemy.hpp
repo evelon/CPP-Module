@@ -18,7 +18,7 @@ public:
 
 	std::string		getType(void) const;
 	int				getHP(void) const;
-	virtual void	takeDamage(int damage);
+	virtual void	takeDamage(int damage) = 0;
 };
 
 #endif

@@ -6,15 +6,21 @@ RadScorpion::RadScorpion(int hp, std::string const& type):
 	std::cout << "* click click click *\n";
 }
 
-RadScorpion::~RadScorpion()
-{
-	std::cout << "* SPROTCH *\n";
-}
+RadScorpion::~RadScorpion() {}
 
 RadScorpion::RadScorpion(RadScorpion const& radscorpion):
 	Enemy(radscorpion.hitPoints, radscorpion.type)
 {
 	std::cout << "* click click click *\n";
+}
+
+void	RadScorpion::takeDamage(int damage)
+{
+	if (this->hitPoints <= 0)
+		return ;
+	this->hitPoints -= damage;
+	if (this->hitPoints <= 0)
+		std::cout << "* SPROTCH *\n";
 }
 
 RadScorpion&	RadScorpion::operator=(RadScorpion const& radscorpion)

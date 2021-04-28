@@ -6,10 +6,7 @@ SuperMutant::SuperMutant(int hp, std::string const& type):
 	std::cout << "Gaaah. Me want smash heads!\n";
 }
 
-SuperMutant::~SuperMutant()
-{
-	std::cout << "Aaargh...\n";
-}
+SuperMutant::~SuperMutant() {}
 
 SuperMutant::SuperMutant(SuperMutant const& supermutant):
 	Enemy(supermutant.hitPoints, supermutant.type)
@@ -26,7 +23,9 @@ SuperMutant&	SuperMutant::operator=(SuperMutant const& supermutant)
 
 void	SuperMutant::takeDamage(int damage)
 {
-	if (hitPoints < 0)
+	if (this->hitPoints <= 0)
 		return ;
 	this->hitPoints -= damage - 3;
+	if (this->hitPoints <= 0)
+		std::cout << "Aaargh...\n";
 }

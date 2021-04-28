@@ -11,6 +11,8 @@ public:
 	~SuperMutant();
 	SuperMutant(SuperMutant const& supermutant);
 	SuperMutant&	operator=(SuperMutant const& supermutant);
+
+	void	takeDamage(int damage);
 };
 
 #endif

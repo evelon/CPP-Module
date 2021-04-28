@@ -1,9 +1,8 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-# include <iostream>
-# include <AWeapon.hpp>
-# include <Enemy.hpp>
+# include "AWeapon.hpp"
+# include "Enemy.hpp"
 
 class	Character
 {
@@ -15,14 +14,18 @@ private:
 public:
 	// Coplien's form
 	Character(std::string const& name = "Character");
-	~Character();
+	~Character(void);
 	Character(Character const& character);
 	Character&	operator=(Character const& character);
 
-	std::string const&	getName() const;
-	void				recoverAP();
+	std::string const&	getName(void) const;
+	int const&			getAP(void) const;
+	AWeapon* const&		getWeapon(void) const;
+	void				recoverAP(void);
 	void				equip(AWeapon* aweapon);
 	void				attack(Enemy* enemy);
 };
+
+std::ostream&	operator<<(std::ostream& os, Character const& character);
 
 #endif
