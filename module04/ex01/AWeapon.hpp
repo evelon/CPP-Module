@@ -1,24 +1,27 @@
 #ifndef AWEAPON_HPP
 # define AWEAPON_HPP
 
-#include <string>
+#include <iostream>
 
 class	AWeapon
 {
-private:
+protected:
 	std::string	name;
-	int			damage;
 	int			apCost;
+	int			damage;
 
 public:
-	AWeapon(std::string const& name = "common knife", int apcost = 5, int damage = 10);
-	~AWeapon();
+	// Coplien's form
+	AWeapon(std::string const& name = "Common Knife", int apcost = 5, int damage = 10);
+	virtual ~AWeapon();
 	AWeapon(AWeapon const& aweapon);
 	AWeapon&		operator=(AWeapon const& aweapon);
-	std::string		getName() const;
-	int				getAPCost() const;
-	int				getDamage() const;
-	virtual void	attack() const = 0;
+	// Getters
+	std::string const&	getName(void) const;
+	int					getAPCost(void) const;
+	int					getDamage(void) const;
+
+	virtual void	attack(void) const = 0;
 };
 
 #endif
