@@ -6,16 +6,17 @@ void	AMateria::setXP(unsigned int xp)
 }
 
 AMateria::AMateria(std::string const& type):
-	_xp(0), type(type) {}
+	type(type), _xp(0) {}
 
 AMateria::AMateria(AMateria const& amateria):
-	_xp(amateria.getXP()), type(amateria.getType()) {}
+	type(amateria.getType()), _xp(amateria.getXP()) {}
 
 AMateria::~AMateria() {}
 
 AMateria&	AMateria::operator=(AMateria const& amateria)
 {
 	this->_xp = amateria._xp;
+	return (*this);
 }
 
 std::string const&	AMateria::getType() const

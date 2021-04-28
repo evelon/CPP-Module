@@ -6,9 +6,9 @@
 class	Character: public ICharacter
 {
 private:
-	std::string	name;
-	int			idx;
-	AMateria**	inventory;
+	std::string			name;
+	static const int	size = 4;
+	AMateria*			inventory[Character::size];
 
 public:
 	Character(std::string name = "Character");

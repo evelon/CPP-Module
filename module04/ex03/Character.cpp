@@ -1,43 +1,40 @@
 #include "Character.hpp"
 
 Character::Character(std::string name):
-	name(name), idx(0), inventory(new AMateria*[4])
+	name(name)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < this->size; i++)
 		this->inventory[i] = NULL;
 }
 
 Character::Character(Character const& character):
-	name(character.name), idx(character.idx), inventory(new AMateria*[4])
+	name(character.name)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < this->size; i++)
 		this->inventory[i] = NULL;
-	if (!this->idx)
-		return ;
-	for (int i = 0; i < this->idx; i++)
+	for (int i = 0; i < this->size; i++)
 		this->inventory[i] = character.inventory[i]->clone();
 }
 
 Character::~Character()
 {
-	for (int i = 0; i < this->idx; i++)
-		delete this->inventory[i];
-	free(this->inventory);
+	for (int i = 0; i < this->size; i++)
+		if (this->inventory[i])
+			delete this->inventory[i];
 }
 
 Character&	Character::operator=(Character const& character)
 {
-	for (int i = 0; i < this->idx; i++)
+	for (int i = 0; i < this->size; i++)
 	{
-		delete this->inventory[i];
+		if (this->inventory[i])
+			delete this->inventory[i];
 		this->inventory[i] = NULL;
 	}
 	this->name = character.name;
-	this->idx = character.idx;
-	if (!this->idx)
-		return ;
-	for (int i = 0; i < this->idx; i++)
+	for (int i = 0; i < this->size; i++)
 		this->inventory[i] = character.inventory[i]->clone();
+	return (*this);
 }
 
 std::string const&	Character::getName() const
@@ -47,18 +44,27 @@ std::string const&	Character::getName() const
 
 void				Character::equip(AMateria* m)
 {
-	if (this->idx >= 4)
-		return ;
-	this->inventory[this->idx++] = m;
+	for (int i = 0; i < size; i++)
+	{
+		if (!this->inventory[i])
+		{
+			this->inventory[i] = m;
+			return ;
+		}
+	}
 }
 
 void				Character::unequip(int idx)
 {
-	if (this->idx <= 0)
+	if (idx < 0 || idx >= size)
 		return ;
-	this->inventory[--this->idx] = NULL;
+	this->inventory[idx] = NULL;
 }
+
 void				Character::use(int idx, ICharacter& target)
 {
-	this->inventory[idx]->use(target);
+	if (idx < 0 || idx >= size)
+		return ;
+	if (this->inventory[idx])
+		this->inventory[idx]->use(target);
 }

@@ -8,11 +8,11 @@ CPP = clang++
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = \
-	AMateria.cpp \
-	Character.cpp \
-	Cure.cpp \
-	Ice.cpp \
-	MateriaSource.cpp \
+	AsteroKreog.cpp \
+	DeepCoreMiner.cpp \
+	KoalaSteroid.cpp \
+	MiningBarge.cpp \
+	StripMiner.cpp \
 	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
