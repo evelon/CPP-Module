@@ -1,5 +1,7 @@
 #include "Victim.hpp"
 
+Victim::Victim() {}
+
 Victim::Victim(std::string name):
 	Person(name)
 {

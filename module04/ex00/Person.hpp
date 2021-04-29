@@ -9,8 +9,9 @@ protected:
 	std::string	name;
 
 public:
-	Person(std::string name = "person");
-	~Person();
+	Person();
+	Person(std::string name);
+	virtual ~Person();
 	Person(Person const& person);
 	Person&	operator=(Person const& person);
 };

@@ -8,10 +8,11 @@ class	Enemy
 protected:
 	int			hitPoints;
 	std::string	type;
+	Enemy();
 
 public:
 	// Coplien's form
-	Enemy(int hp = 100, std::string const& type = "enemy");
+	Enemy(int hp, std::string const& type);
 	virtual ~Enemy();
 	Enemy(Enemy const& enemy);
 	Enemy&	operator=(Enemy const& enemy);

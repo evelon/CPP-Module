@@ -10,10 +10,10 @@ int	main()
 
 	std::cout << *me;
 
-	Enemy* b = new RadScorpion();
+	Enemy* b = new RadScorpion;
 
-	AWeapon* pr = new PlasmaRifle();
-	AWeapon* pf = new PowerFist();
+	AWeapon* pr = new PlasmaRifle;
+	AWeapon* pf = new PowerFist;
 
 	me->equip(pr);
 	std::cout << *me;

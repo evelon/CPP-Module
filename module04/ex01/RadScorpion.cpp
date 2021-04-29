@@ -1,7 +1,7 @@
 #include "RadScorpion.hpp"
 
-RadScorpion::RadScorpion(int hp, std::string const& type):
-	Enemy(hp, type)
+RadScorpion::RadScorpion():
+	Enemy(80, "Rad Scorpion")
 {
 	std::cout << "* click click click *\n";
 }

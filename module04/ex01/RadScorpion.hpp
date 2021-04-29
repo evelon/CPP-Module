@@ -7,7 +7,7 @@ class	RadScorpion: public Enemy
 {
 public:
 	// coplien's form
-	RadScorpion(int hp = 80, std::string const& type = "Rad Scorpion");
+	RadScorpion();
 	~RadScorpion();
 	RadScorpion(RadScorpion const& radscorpion);
 	RadScorpion&	operator=(RadScorpion const& radscorpion);

@@ -1,5 +1,7 @@
 #include "Enemy.hpp"
 
+Enemy::Enemy() {}
+
 Enemy::Enemy(int hp, std::string const& type):
 	hitPoints(hp), type(type) {}
 

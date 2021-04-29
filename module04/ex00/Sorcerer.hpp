@@ -6,12 +6,15 @@
 
 class	Sorcerer: virtual protected Person
 {
+private:
+	Sorcerer();
+
 protected:
 	std::string	title;
 
 public:
-	Sorcerer(std::string name = "sorcerer", std::string title = "title");
-	~Sorcerer();
+	Sorcerer(std::string name, std::string title);
+	virtual ~Sorcerer();
 	Sorcerer(Sorcerer const& sorcerer);
 	Sorcerer&	operator=(Sorcerer const& sorcerer);
 	std::string	getName(void) const;

@@ -1,7 +1,7 @@
 #include "PlasmaRifle.hpp"
 
-PlasmaRifle::PlasmaRifle(std::string const& name, int apcost, int damage):
-	AWeapon(name, apcost, damage) {}
+PlasmaRifle::PlasmaRifle():
+	AWeapon("Plasma Rifle", 5, 21) {}
 
 PlasmaRifle::~PlasmaRifle() {}
 

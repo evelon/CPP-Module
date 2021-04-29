@@ -5,12 +5,14 @@
 
 class	Peon: public Victim
 {
-private:
 	void	bornMsg(void);
 
+protected:
+	Peon();
+
 public:
-	Peon(std::string name = "peon");
-	~Peon();
+	Peon(std::string name);
+	virtual ~Peon();
 	Peon(Peon const& peon);
 	Peon&	operator=(Peon const& peon);
 	virtual void 	getPolymorphed(void) const;

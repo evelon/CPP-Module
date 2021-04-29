@@ -1,7 +1,7 @@
 #include "SuperMutant.hpp"
 
-SuperMutant::SuperMutant(int hp, std::string const& type):
-	Enemy(hp, type)
+SuperMutant::SuperMutant():
+	Enemy(170, "Super Mutant")
 {
 	std::cout << "Gaaah. Me want smash heads!\n";
 }

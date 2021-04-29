@@ -20,6 +20,8 @@ MateriaSource::~MateriaSource(void)
 
 MateriaSource&	MateriaSource::operator=(MateriaSource const& ms)
 {
+	for (int i = 0; i < this->idx; i++)
+		delete this->inventory[i];
 	this->idx = ms.idx;
 	for (int i = 0; i < 4; i++)
 		this->inventory[i] = NULL;

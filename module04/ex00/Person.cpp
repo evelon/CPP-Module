@@ -1,5 +1,7 @@
 #include "Person.hpp"
 
+Person::Person() {};
+
 Person::Person(std::string name):
 	name(name) {}
 

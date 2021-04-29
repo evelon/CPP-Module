@@ -10,10 +10,11 @@ private:
 	std::string	name;
 	int			actionPoints;
 	AWeapon*	aweapon;
+	Character();
 
 public:
 	// Coplien's form
-	Character(std::string const& name = "Character");
+	Character(std::string const& name);
 	~Character(void);
 	Character(Character const& character);
 	Character&	operator=(Character const& character);

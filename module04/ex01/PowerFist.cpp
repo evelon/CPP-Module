@@ -1,7 +1,7 @@
 #include "PowerFist.hpp"
 
-PowerFist::PowerFist(std::string const& name, int apcost, int damage):
-	AWeapon(name, apcost, damage) {}
+PowerFist::PowerFist():
+	AWeapon("Power Fist", 8, 50) {}
 
 PowerFist::~PowerFist() {}
 

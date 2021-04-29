@@ -5,6 +5,9 @@
 
 class	Victim: protected Person
 {
+protected:
+	Victim();
+
 public:
 	Victim(std::string name);
 	virtual ~Victim();
