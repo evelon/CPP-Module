@@ -10,7 +10,7 @@ public:
 	~You();
 	You(You const& you);
 	You&	operator=(You const& you);
-	void	getPolymorphed(void) const override;
+	void	getPolymorphed(void) const;
 };
 
 #endif

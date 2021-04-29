@@ -13,7 +13,7 @@ public:
 	~Peon();
 	Peon(Peon const& peon);
 	Peon&	operator=(Peon const& peon);
-	virtual void 	getPolymorphed(void) const override;
+	virtual void 	getPolymorphed(void) const;
 };
 
 #endif

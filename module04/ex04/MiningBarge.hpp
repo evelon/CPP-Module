@@ -1,6 +1,7 @@
 #ifndef MININGBARGE_HPP
 # define MININGBARGE_HPP
 
+# include <cstddef>
 # include "IMiningLaser.hpp"
 
 class	MiningBarge

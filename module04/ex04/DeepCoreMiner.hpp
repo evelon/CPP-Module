@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include "IMiningLaser.hpp"
+# include "IAsteroid.hpp"
 
 class	DeepCoreMiner: public IMiningLaser
 {

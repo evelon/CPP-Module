@@ -25,6 +25,7 @@ MiningBarge&	MiningBarge::operator=(MiningBarge const& mb)
 	this->idx = mb.idx;
 	for (int i = 0; i < this->idx; i++)
 		this->lasers[i] = mb.lasers[i];
+	return (*this);
 }
 
 void	MiningBarge::equip(IMiningLaser*	ml)

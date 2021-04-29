@@ -2,7 +2,9 @@
 # define STRIPMINER_HPP
 
 # include <iostream>
+
 # include "IMiningLaser.hpp"
+# include "IAsteroid.hpp"
 
 class	StripMiner: public IMiningLaser
 {

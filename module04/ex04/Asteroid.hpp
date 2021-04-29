@@ -16,8 +16,9 @@ public:
 	virtual ~Asteroid(void);
 	Asteroid&	operator=(Asteroid const& asteroid);
 
-	virtual std::string	beMined(StripMiner* ml) const;
-	virtual std::string	beMined(DeepCoreMiner* ml) const;
+	virtual std::string	beMined(StripMiner* sm) const;
+	virtual std::string	beMined(DeepCoreMiner* dcm) const;
+
 	virtual std::string	getName(void) const;
 };
 

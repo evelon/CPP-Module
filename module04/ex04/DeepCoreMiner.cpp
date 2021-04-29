@@ -2,12 +2,16 @@
 
 DeepCoreMiner::DeepCoreMiner(void) {}
 
-DeepCoreMiner::DeepCoreMiner(DeepCoreMiner const& dcm) {}
+DeepCoreMiner::DeepCoreMiner(DeepCoreMiner const& dcm)
+{
+	(void)dcm;
+}
 
 DeepCoreMiner::~DeepCoreMiner(void) {}
 
 DeepCoreMiner&	DeepCoreMiner::operator=(DeepCoreMiner const& dcm)
 {
+	(void)dcm;
 	return (*this);
 }
 

@@ -2,12 +2,16 @@
 
 StripMiner::StripMiner(void) {}
 
-StripMiner::StripMiner(StripMiner const& sm) {}
+StripMiner::StripMiner(StripMiner const& sm)
+{
+	(void)sm;
+}
 
 StripMiner::~StripMiner(void) {}
 
 StripMiner&	StripMiner::operator=(StripMiner const& sm)
 {
+	(void)sm;
 	return (*this);
 }
 
