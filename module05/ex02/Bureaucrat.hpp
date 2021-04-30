@@ -27,6 +27,7 @@ public:
 	void				upGrade(void);
 	void				downGrade(void);
 	void				signForm(Form& form);
+	void				executeForm(Form const& form);
 
 	class	GradeTooHighException: public std::exception
 	{
@@ -42,6 +43,5 @@ public:
 };
 
 std::ostream&	operator<<(std::ostream& os, Bureaucrat const& brcrt);
-
 
 #endif

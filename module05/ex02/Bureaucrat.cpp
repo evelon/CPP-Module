@@ -58,9 +58,25 @@ void	Bureaucrat::signForm(Form& form)
 	}
 	catch (std::exception& e)
 	{
-		std::cout << '<' << this->name << "> cannot sign <" << form.getName() \
+		std::cerr << '<' << this->name << "> cannot sign <" << form.getName() \
 		<< "> because <" << e.what() << ">.\n";
 	}
+}
+
+void	Bureaucrat::executeForm(Form const& form)
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << '<' << this->name << "> cannot execute <" << form.getName() \
+		<< ">:" << form.getTarget() << " because <" << e.what() << ">.\n";
+		return ;
+	}
+	std::cout << '<' << this->name << "> executes <" << form.getName() << ">:" \
+	<< form.getTarget() << ".\n";
 }
 
 //==============================================================================
