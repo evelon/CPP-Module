@@ -63,7 +63,7 @@ void	Bureaucrat::signForm(Form& form)
 	}
 }
 
-void	Bureaucrat::executeForm(Form const& form)
+void	Bureaucrat::executeForm(Form const& form) throw(std::exception)
 {
 	try
 	{

@@ -2,6 +2,7 @@
 # define FORM_HPP
 
 # include "Bureaucrat.hpp"
+# include "CauseException.hpp"
 
 class	Bureaucrat;
 
@@ -22,19 +23,21 @@ private:
 protected:
 	void	setSign(bool sign);
 
-	class	GradeTooHighException: public std::exception
+	class	GradeTooHighException: public CauseException
 	{
 	public:
+		GradeTooHighException();
+		GradeTooHighException(std::string cause);
 		virtual const char*	what() const throw();
 	};
-
-	class	GradeTooLowException: public std::exception
+	class	GradeTooLowException: public CauseException
 	{
 	public:
+		GradeTooLowException();
+		GradeTooLowException(std::string cause);
 		virtual const char*	what() const throw();
 	};
-
-	class	FormNotSigned: public std::exception
+	class	FormNotSignedException: public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
@@ -55,7 +58,7 @@ public:
 	void				setTarget(std::string target);
 
 	void				beSigned(Bureaucrat const& brcrt);
-	virtual void		execute(Bureaucrat const& brcrt) const = 0;
+	virtual void		execute(Bureaucrat const& brcrt) const throw(std::exception)= 0;
 };
 
 std::ostream&	operator<<(std::ostream& os, Form const& form);

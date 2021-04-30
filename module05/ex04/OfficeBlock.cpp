@@ -46,12 +46,15 @@ void	OfficeBlock::doBureaucracy(std::string form_name, std::string target)
 			throw (OfficeBlock::NoSignerException());
 		if (!this->executer)
 			throw (OfficeBlock::NoExecuterException());
-		Form*	new_form = intern->makeForm(form_name)
 
+		Form*	new_form = intern->makeForm(form_name, target);
+		std::cout << "Intern creates " << *new_form << ".\n";
+		this->signer->executeForm(*new_form);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "This officeblock cannot handle the form, " << form_name \
+		<< " with the target, " << target << ", because <" <<e.what() << ">\n";
 	}
 
 

@@ -30,7 +30,7 @@ Intern&	Intern::operator=(Intern const& intern)
 	return (*this);
 }
 
-Form*	Intern::makeForm(std::string name, std::string target)
+Form*	Intern::makeForm(std::string name, std::string target) throw(std::exception)
 {
 	std::string	form_names[3] = \
 	{
@@ -45,20 +45,12 @@ Form*	Intern::makeForm(std::string name, std::string target)
 		&Intern::makePPForm
 	};
 
-	try
+	for (int i = 0; i < 3; i++)
 	{
-		for (int i = 0; i < 3; i++)
-		{
-			if (!form_names[i].compare(name))
-				return ((this->*form_makes[i])(target));
-		}
-		throw (Intern::NoSuchForm());
+		if (!form_names[i].compare(name))
+			return ((this->*form_makes[i])(target));
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (NULL);
+	throw (Intern::NoSuchForm());
 }
 
 const char*	Intern::NoSuchForm::what() const throw()

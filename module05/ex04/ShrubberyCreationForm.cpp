@@ -29,10 +29,10 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const& brcrt) const
+void	ShrubberyCreationForm::execute(Bureaucrat const& brcrt) const throw(std::exception)
 {
 	if (!this->isSigned())
-		throw Form::FormNotSigned();
+		throw Form::FormNotSignedException();
 	if (brcrt.getGrade() > this->getGradeExecute())
 		throw Form::GradeTooLowException();
 

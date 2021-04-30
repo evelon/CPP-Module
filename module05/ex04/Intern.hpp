@@ -22,7 +22,7 @@ public:
 	Intern(Intern const& intern);
 	~Intern();
 	Intern&	operator=(Intern const& intern);
-	Form*	makeForm(std::string name, std::string target);
+	Form*	makeForm(std::string name, std::string target) throw(std::exception);
 };
 
 #endif

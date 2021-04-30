@@ -29,12 +29,12 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm
 	return (*this);
 }
 
-void	PresidentialPardonForm::execute(Bureaucrat const& brcrt) const
+void	PresidentialPardonForm::execute(Bureaucrat const& brcrt) const throw(std::exception)
 {
 	try
 	{
 		if (!this->isSigned())
-			throw Form::FormNotSigned();
+			throw Form::FormNotSignedException();
 		if (brcrt.getGrade() > this->getGradeExecute())
 			throw Form::GradeTooLowException();
 	}

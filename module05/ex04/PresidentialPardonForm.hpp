@@ -16,7 +16,7 @@ public:
 	virtual ~PresidentialPardonForm();
 	PresidentialPardonForm&	operator=(PresidentialPardonForm const& ppf);
 
-	virtual void		execute(Bureaucrat const& brcrt) const;
+	virtual void		execute(Bureaucrat const& brcrt) const throw(std::exception);
 };
 
 #endif

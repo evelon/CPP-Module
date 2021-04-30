@@ -39,7 +39,7 @@ public:
 	void				upGrade(void);
 	void				downGrade(void);
 	void				signForm(Form& form);
-	void				executeForm(Form const& form);
+	void				executeForm(Form const& form) throw(std::exception);
 };
 
 std::ostream&	operator<<(std::ostream& os, Bureaucrat const& brcrt);
