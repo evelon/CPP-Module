@@ -15,18 +15,6 @@ private:
 	static const int	lowestGrade = 150;
 	Bureaucrat();
 
-public:
-	Bureaucrat(std::string name, int grade);
-	Bureaucrat(Bureaucrat const& brcrt);
-	~Bureaucrat();
-	Bureaucrat&	operator=(Bureaucrat const& brcrt);
-
-	std::string const&	getName(void) const;
-	int const&			getGrade(void) const;
-	void				upGrade(void);
-	void				downGrade(void);
-	void				signForm(Form& form);
-
 	class	GradeTooHighException: public std::exception
 	{
 	public:
@@ -38,6 +26,18 @@ public:
 	public:
 		virtual const char* what() const throw();
 	};
+
+public:
+	Bureaucrat(std::string name, int grade);
+	Bureaucrat(Bureaucrat const& brcrt);
+	~Bureaucrat();
+	Bureaucrat&	operator=(Bureaucrat const& brcrt);
+
+	std::string const&	getName(void) const;
+	int const&			getGrade(void) const;
+	void				upGrade(void);
+	void				downGrade(void);
+	void				signForm(Form& form);
 };
 
 std::ostream&	operator<<(std::ostream& os, Bureaucrat const& brcrt);

@@ -18,6 +18,18 @@ private:
 	static const int	highestGrade = 1;
 	static const int	lowestGrade = 150;
 
+	class	GradeTooHighException: public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
+
+	class	GradeTooLowException: public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
+
 public:
 	Form(std::string name, int grade_sign, int grade_exec);
 	Form(Form const& form);
@@ -31,18 +43,6 @@ public:
 	bool const&			isSigned(void) const;
 
 	void				beSigned(Bureaucrat const& brcrt);
-
-	class	GradeTooHighException: public std::exception
-	{
-	public:
-		virtual const char* what() const throw();
-	};
-
-	class	GradeTooLowException: public std::exception
-	{
-	public:
-		virtual const char* what() const throw();
-	};
 };
 
 std::ostream&	operator<<(std::ostream& os, Form const& form);

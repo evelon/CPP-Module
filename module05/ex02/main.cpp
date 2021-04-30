@@ -28,23 +28,34 @@ int	main()
 
 		std::cout << scf << rrf << ppf << '\n';
 
+		std::cout << "Try to execute forms.\n";
 		for (int i = 0; i < 7; i++)
 		{
+			std::cout << brcrts[i];
 			brcrts[i].executeForm(scf);
 			brcrts[i].executeForm(rrf);
 			brcrts[i].executeForm(ppf);
+			std::cout << '\n';
 		}
+
+		std::cout << "Try to sign forms.\n";
 		for (int i = 0; i < 7; i++)
 		{
+			std::cout << brcrts[i];
 			brcrts[i].signForm(scf);
 			brcrts[i].signForm(rrf);
 			brcrts[i].signForm(ppf);
+			std::cout << '\n';
 		}
+
+		std::cout << "Try to execute forms.\n";
 		for (int i = 0; i < 7; i++)
 		{
+			std::cout << brcrts[i];
 			brcrts[i].executeForm(scf);
 			brcrts[i].executeForm(rrf);
 			brcrts[i].executeForm(ppf);
+			std::cout << '\n';
 		}
 	}
 	catch(const std::exception& e)
