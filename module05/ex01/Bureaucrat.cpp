@@ -49,6 +49,20 @@ void	Bureaucrat::downGrade(void)
 	this->grade++;
 }
 
+void	Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << '<' << this->name << "> signs <" << form.getName() << ">\n";
+	}
+	catch (std::exception& e)
+	{
+		std::cout << '<' << this->name << "> cannot sign <" << form.getName() \
+		<< "> because <" << e.what() << ">.\n";
+	}
+}
+
 //==============================================================================
 // exceptions
 
