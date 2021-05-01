@@ -8,6 +8,7 @@ CPP = clang++
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = \
+	CentralBureaucracy.cpp \
 	OfficeBlock.cpp \
 	Bureaucrat.cpp \
 	Intern.cpp \
@@ -16,6 +17,7 @@ SRCS = \
 	PresidentialPardonForm.cpp \
 	RobotomyRequestForm.cpp \
 	ShrubberyCreationForm.cpp \
+	exQueue.cpp \
 	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

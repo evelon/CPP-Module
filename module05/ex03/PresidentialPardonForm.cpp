@@ -45,5 +45,5 @@ void	PresidentialPardonForm::execute(Bureaucrat const& brcrt) const
 		return ;
 	}
 
-	std::cout << '<' << this->getTarget() << " has been pardoned by Zafod Beeblebrox.\n";
+	std::cout << '<' << this->getTarget() << "> has been pardoned by Zafod Beeblebrox.\n";
 }

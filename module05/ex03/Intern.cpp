@@ -34,9 +34,9 @@ Form*	Intern::makeForm(std::string name, std::string target)
 {
 	std::string	form_names[3] = \
 	{
-		"Presidential Pardon Form",
+		"Shrubbery Creation Form",
 		"Robotomy Request Form",
-		"Shrubbery Creation Form"
+		"Presidential Pardon Form",
 	};
 	Form*	(Intern::* form_makes[3])(std::string const&) const = \
 	{
