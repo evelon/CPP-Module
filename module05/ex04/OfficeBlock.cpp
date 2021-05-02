@@ -57,6 +57,15 @@ void	OfficeBlock::doBureaucracy(std::string form_name, std::string target) throw
 
 	Form*	new_form = intern->makeForm(form_name, target);
 	std::cout << "Intern creates " << *new_form << ".\n";
-	this->signer->signForm(*new_form);
-	this->executer->executeForm(*new_form);
+	try
+	{
+		this->signer->signForm(*new_form);
+		this->executer->executeForm(*new_form);
+	}
+	catch (CauseException& e)
+	{
+		delete new_form;
+		throw e;
+	}
+	delete new_form;
 }

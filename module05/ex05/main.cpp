@@ -42,28 +42,28 @@ int	main()
 {
 	srand(time(NULL));
 
-	try
 	{
 		CentralBureaucracy	cb;
-
-		for (int i = 0; i < 20; i++)
-			cb.feedBureaucrat(new Bureaucrat(random_name(), rand() % 150 + 1));
-		for (int i = 0; i < rand() % 10; i++)
+		try
 		{
-			for (int j = 0; j < (rand() % 128 + rand() % 128) / 2; j++)
-				cb.queueUp(random_name());
-			for (int j = 0; j < rand() % 128; j++)
+			for (int i = 0; i < 20; i++)
+			{
+				cb.feedBureaucrat(new Bureaucrat(random_name(), rand() % 150 + 1));
+			}
+			for (int i = 0; i < rand() % 10; i++)
+			{
+				for (int j = 0; j < (rand() % 12 + rand() % 12) / 2; j++)
+					cb.queueUp(random_name());
+				for (int j = 0; j < rand() % 12; j++)
+					cb.doBureaucracy();
+			}
+			while (1)
 				cb.doBureaucracy();
 		}
-		while (1)
-			cb.doBureaucracy();
+		catch(const std::exception& e)
+		{
+			std::cerr << "No petitioner left." << '\n';
+		}
 	}
-	catch(const CauseException& e)
-	{
-		std::cerr << e.getCircumstance() << e.what() << '\n';
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	system("leaks a.out");
 }

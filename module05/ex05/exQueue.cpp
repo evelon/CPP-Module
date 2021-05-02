@@ -1,12 +1,13 @@
 #include "exQueue.hpp"
 
 template <class T>
-exQueue<T>::exQueue(int size, std::exception too_many, std::exception none):
+exQueue<T>::exQueue(int size, std::exception* too_many, std::exception* none):
 	size(size),
 	queue(new T[this->size]),
 	first(0), last(0),
 	empty(true),
-	too_many(too_many), none(none)
+	too_many(too_many),
+	none(none)
 {}
 
 template <class T>
@@ -34,7 +35,11 @@ exQueue<T>::exQueue(exQueue<T> const& q):
 template <class T>
 exQueue<T>::~exQueue()
 {
-	delete this->queue;
+	if (this->queue)
+		delete[] this->queue;
+	this->queue = NULL;
+	delete this->too_many;
+	delete this->none;
 }
 
 template <class T>
@@ -64,8 +69,8 @@ template <class T>
 void	exQueue<T>::enq(T t) throw(std::exception)
 {
 	if (this->last == this->first && !this->empty)
-		throw (this->too_many);
-	this->emtpy = false;
+		throw (*this->too_many);
+	this->empty = false;
 	this->queue[this->last++] = t;
 	if (this->last == size)
 		this->last = 0;
@@ -75,7 +80,7 @@ template <class T>
 T&	exQueue<T>::deq(void) throw(std::exception)
 {
 	if (this->empty)
-		throw (this->none);
+		throw (*this->none);
 	int temp = this->first++;
 	if (this->first == this->last)
 		this->empty = true;

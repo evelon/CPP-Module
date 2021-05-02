@@ -1,6 +1,6 @@
 .PHONY: all re clean fclean
 
-NAME = a.out
+NAME = convert
 
 all: $(NAME)
 
@@ -8,16 +8,7 @@ CPP = clang++
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = \
-	CentralBureaucracy.cpp \
-	OfficeBlock.cpp \
-	Bureaucrat.cpp \
-	Intern.cpp \
-	Form.cpp \
-	CauseException.cpp \
-	PresidentialPardonForm.cpp \
-	RobotomyRequestForm.cpp \
-	ShrubberyCreationForm.cpp \
-	main.cpp
+	convert.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)

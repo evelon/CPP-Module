@@ -16,7 +16,7 @@ public:
 	virtual ~CauseException() throw();
 	CauseException(std::string who, std::string deed, std::string factor) throw();
 	std::string	getCircumstance(void) const throw();
-	virtual const char* what(void) const throw() = 0;
+	virtual const char* what(void) const throw();
 };
 
 #endif

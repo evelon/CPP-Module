@@ -1,9 +1,12 @@
 #include "CentralBureaucracy.hpp"
+#include "exQueue.cpp"
 
 CentralBureaucracy::CentralBureaucracy():
-	brcrtQ(BRCRT_MAX, CentralBureaucracy::TooManyBureaucratException(), CentralBureaucracy::NoBureaucratException()),
-	targetQ(TARGET_MAX, CentralBureaucracy::TooManyTargetException(), CentralBureaucracy::NoTargetException())
-{}
+	brcrtQ(BRCRT_MAX, new CentralBureaucracy::TooManyBureaucratException(), new CentralBureaucracy::NoBureaucratException()),
+	targetQ(TARGET_MAX, new CentralBureaucracy::TooManyTargetException(), new CentralBureaucracy::NoTargetException())
+{
+
+}
 
 
 CentralBureaucracy::~CentralBureaucracy() {}
@@ -12,16 +15,17 @@ void	CentralBureaucracy::feedBureaucrat(Bureaucrat* brcrt) throw(std::exception)
 {
 	static int	n = 0;
 	this->brcrtQ.enq(brcrt);
-	if (n++ < 40)
+	if (n < 40)
 	{
 		if (!(n % 2))
 		{
-			this->blocks[n / 2].setIntern(new Intern());
+			this->blocks[n / 2].setIntern(new Intern);
 			this->blocks[n / 2].setSigner(brcrt);
 		}
 		else
 			this->blocks[n / 2].setExecuter(brcrt);
 	}
+	n++;
 }
 
 void	CentralBureaucracy::queueUp(std::string name) throw(std::exception)
