@@ -31,19 +31,9 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm
 
 void	PresidentialPardonForm::execute(Bureaucrat const& brcrt) const
 {
-	try
-	{
-		if (!this->isSigned())
-			throw Form::FormNotSigned();
-		if (brcrt.getGrade() > this->getGradeExecute())
-			throw Form::GradeTooLowException();
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << '<' << brcrt.getName() << "> cannot execute <" << this->getName() \
-		<< ">:" << this->getTarget() << " because <" << e.what() << ">.\n";
-		return ;
-	}
-
+	if (!this->isSigned())
+		throw Form::FormNotSigned();
+	if (brcrt.getGrade() > this->getGradeExecute())
+		throw Form::GradeTooLowException();ㄴ
 	std::cout << '<' << this->getTarget() << "> has been pardoned by Zafod Beeblebrox.\n";
 }
