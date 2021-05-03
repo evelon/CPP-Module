@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+void	toDouble(const char*);
+void	impossible(void);
+
 bool	isCStringInt(const char* str)
 {
 	if (*str == '-' || *str == '+')
@@ -102,82 +105,102 @@ void	toChar(const char* input)
 	<< "\ndouble: " << static_cast<double>(c) << ".0\n";
 }
 
+void	printChar(char c)
+{
+	std::cout << "char: ";
+	if (isprint(static_cast<char>(c)))
+		std::cout << '\'' << static_cast<char>(c) << '\'';
+	else
+		std::cout << "Non displayable";
+	std::cout << '\n';
+}
+
+void	printFloat(float f)
+{
+	std::cout <<"float: " << f;
+
+	std::stringstream	ss;
+	std::string			str;
+
+	ss << f;
+	ss >> str;
+	if (str.find_first_of("e.") == std::string::npos)
+		std::cout << ".0";
+	std::cout << "f\n";
+}
+
+void	printDouble(double d)
+{
+	std::cout << "double " << d;
+
+	std::stringstream	ss;
+	std::string			str;
+
+	ss << d;
+	ss >> str;
+	if (str.find_first_of("e.") == std::string::npos)
+		std::cout << ".0";
+	std::cout << "\n";
+}
+
 void	toInt(const char* input)
 {
 	double d = atof(input);
 	if (d < -2147483648 || d > 2147483647)
 	{
-		std::cout << "impossible\n";
+		if (isCStringDouble(input))
+		{
+			toDouble(input);
+			return;
+		}
+		impossible();
 		return ;
 	}
 
 	int	i = atoi(input);
 
 	if (i >= -128 && i <= 127)
-	{
-		std::cout << "char: ";
-		if (isprint(static_cast<char>(i)))
-			std::cout << '\'' << static_cast<char>(i) << '\'';
-		else
-			std::cout << "Non displayable";
-		std::cout << '\n';
-	}
+		printChar(static_cast<char>(i));
 	else
-		std::cout << "impossible" << '\n';
+		std::cout << "char: impossible\n";
 	std::cout << "int: " << i << '\n';
-	std::cout << "float: " << static_cast<float>(i) << ".0f\n";
-	std::cout << "double: " << static_cast<double>(i) << ".0\n";
+	printFloat(static_cast<float>(i));
+	printDouble(static_cast<double>(i));
 }
 
-// void	toFloat(const char* input)
-// {
-// 	std::cout << "float: ";
+void	toFloat(const char* input)
+{
+	float	f;
+	f = static_cast<float>(atof(input));
 
-// 	if (!isCStringFloatDouble(input))
-// 	{
-// 		std::cout << "impossible\n";
-// 		return ;
-// 	}
+	if (f >= -128 && f <= 127)
+		printChar(static_cast<char>(f));
+	else
+		std::cout << "char: impossible\n";
+	if (f >= -2147483648 && f <= 2147483647)
+		std::cout << "int: " << static_cast<int>(f) << '\n';
+	else
+		std::cout << "int: impossible\n";
+	printFloat(f);
+	printDouble(static_cast<double>(f));
+}
 
-// 	float	f;
-// 	f = static_cast<float>(atof(input));
+void	toDouble(const char* input)
+{
+	float	d;
+	d = (atof(input));
 
-// 	std::cout << f;
-// 	std::stringstream	ss;
-// 	ss << f;
-
-// 	std::string	str;
-// 	ss >> str;
-
-// 	if (str.find_first_of(".e") == std::string::npos)
-// 		std::cout << ".0";
-// 	std::cout << "f\n";
-// }
-
-// void	toDouble(const char* input)
-// {
-// 	std::cout << "double: ";
-
-// 	if (!isCStringFloatDouble(input))
-// 	{
-// 		std::cout << "impossible\n";
-// 		return ;
-// 	}
-
-// 	double	d;
-// 	d = atof(input);
-
-// 	std::cout << d;
-// 	std::stringstream	ss;
-// 	ss << d;
-
-// 	std::string	str;
-// 	ss >> str;
-
-// 	if (str.find_first_of(".e") == std::string::npos)
-// 		std::cout << ".0";
-// 	std::cout << "\n";
-// }
+	if (d >= -128 && d <= 127)
+		printChar(static_cast<char>(d));
+	else
+		std::cout << "char: impossible\n";
+	if (d >= -2147483648 && d <= 2147483647)
+		std::cout << "int: " << static_cast<int>(d) << '\n';
+	else
+		std::cout << "int: impossible\n";
+	printFloat(static_cast<float>(d));
+	printDouble(d);
+}
 
 void	impossible(void)
 {
@@ -192,10 +215,10 @@ int	main(int argc, char* argv[])
 		toChar(argv[1]);
 	else if (isCStringInt(argv[1]))
 		toInt(argv[1]);
-	// else if (isCStringFloat(argv[1]))
-	// 	toFloat(argv[1]);
-	// else if (isCStringDouble(argv[1]))
-	// 	toDouble(argv[1]);
+	else if (isCStringFloat(argv[1]))
+		toFloat(argv[1]);
+	else if (isCStringDouble(argv[1]))
+		toDouble(argv[1]);
 	else
 		impossible();
 }
