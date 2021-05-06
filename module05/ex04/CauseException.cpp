@@ -9,3 +9,8 @@ std::string	CauseException::getCircumstance(void) const throw()
 {
 	return (this->who + " cannot " + this->deed + " because " + this->factor);
 }
+
+const char*	CauseException::what(void) const throw()
+{
+	return ("exception happened");
+}

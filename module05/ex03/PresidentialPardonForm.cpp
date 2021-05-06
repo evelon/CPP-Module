@@ -34,6 +34,6 @@ void	PresidentialPardonForm::execute(Bureaucrat const& brcrt) const
 	if (!this->isSigned())
 		throw Form::FormNotSigned();
 	if (brcrt.getGrade() > this->getGradeExecute())
-		throw Form::GradeTooLowException();ㄴ
+		throw Form::GradeTooLowException();
 	std::cout << '<' << this->getTarget() << "> has been pardoned by Zafod Beeblebrox.\n";
 }
