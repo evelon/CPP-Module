@@ -20,14 +20,14 @@ private:
 public:
 	span(unsigned int len);
 	span(span const& span);
-	template<typename InputIterator>
-	span(InputIterator const& begin, InputIterator const& last);
+	template<typename Iterator>
+	span(Iterator const& begin, Iterator const& last);
 	~span();
 	span&	operator=(span const& span);
 
-	void			addNumber(int n) throw(std::exception);
-	template<typename InputIterator>
-	void			addNumber(InputIterator const& begin, InputIterator const& last);
-	unsigned int	shortestSpan(void) throw(std::exception);
-	unsigned int	longestSpan(void) throw(std::exception);
+	void			addNumber(int n);
+	template<typename Iterator>
+	void			addNumber(Iterator const& begin, Iterator const& last);
+	unsigned int	shortestSpan(void);
+	unsigned int	longestSpan(void);
 };

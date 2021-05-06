@@ -14,7 +14,7 @@ public:
 	Array(Array& array);
 	~Array(void);
 	Array&	operator=(Array const& array);
-	T&		operator[](unsigned int n) throw(std::exception);
+	T&		operator[](unsigned int n);
 	unsigned int	size(void) const;
 
 	class	OutOfRangeException: public std::exception
@@ -66,7 +66,7 @@ Array<T>&	Array<T>::operator=(Array const& array)
 }
 
 template	<typename T>
-T&		Array<T>::operator[](unsigned int n) throw(std::exception)
+T&		Array<T>::operator[](unsigned int n)
 {
 	if (n >= this->array_size)
 		throw Array<T>::OutOfRangeException();

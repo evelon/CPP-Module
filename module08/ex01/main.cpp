@@ -68,4 +68,38 @@ int	main()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << '\n';
+
+	try
+	{
+		std::cout << "error test " << ++n << "\n";
+		len = 3;
+		std::cout << "initiate span with parameter" << len << "\n";
+		span	sp(len);
+		std::cout << "make a vector with 10 elements\n";
+		std::cout << "get shortest span\n";
+		std::cout << sp.shortestSpan();
+		std::cout << "case " << n << ": no error\n";
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << '\n';
+
+	try
+	{
+		std::cout << "error test " << ++n << "\n";
+		len = 3;
+		std::cout << "initiate span with parameter" << len << "\n";
+		span	sp(len);
+		std::cout << "make a vector with 10 elements\n";
+		std::cout << "get shortest span\n";
+		std::cout << sp.shortestSpan();
+		std::cout << "case " << n << ": no error\n";
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << '\n';
 }

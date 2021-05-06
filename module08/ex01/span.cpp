@@ -18,12 +18,12 @@ span::span(unsigned int len):
 span::span(span const& span):
 	numbers(span.numbers), len(span.len) {}
 
-template<typename InputIterator>
-span::span(InputIterator const& begin, InputIterator const& last):
+template<typename Iterator>
+span::span(Iterator const& begin, Iterator const& last):
 	numbers(), len(0)
 {
 	this->len = last - begin;
-	for (InputIterator start = begin; start != last; start++)
+	for (Iterator start = begin; start != last; start++)
 		this->numbers.insert(*start);
 }
 
@@ -37,23 +37,23 @@ span&	span::operator=(span const& span)
 	return (*this);
 }
 
-void			span::addNumber(int n) throw(std::exception)
+void			span::addNumber(int n)
 {
 	if (this->numbers.size() == this->len)
 		throw(span::ExceedSpanSizeException());
 	this->numbers.insert(n);
 }
 
-template<typename InputIterator>
-void			span::addNumber(InputIterator const& begin, InputIterator const& last)
+template<typename Iterator>
+void			span::addNumber(Iterator const& begin, Iterator const& last)
 {
 	if (last - begin + this->numbers.size() >= this->len)
 		throw (span::ExceedSpanSizeException());
-	for (InputIterator start = begin; start != last; start++)
+	for (Iterator start = begin; start != last; start++)
 		this->numbers.insert(*start);
 }
 
-unsigned int	span::shortestSpan(void) throw(std::exception)
+unsigned int	span::shortestSpan(void)
 {
 	if (this->numbers.size() <= 1)
 		throw (span::NoSpanException());
@@ -72,7 +72,7 @@ unsigned int	span::shortestSpan(void) throw(std::exception)
 	return (min);
 }
 
-unsigned int	span::longestSpan(void) throw(std::exception)
+unsigned int	span::longestSpan(void)
 {
 	unsigned int	max;
 
