@@ -1,2 +1,7 @@
+#include <algorithm>
+
 template	<typename T>
-easyfind(T t, int n)
+typename T::iterator	easyfind(T& t, int n)
+{
+	return (std::find(t.begin(), t.end(), n));
+}
