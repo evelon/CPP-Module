@@ -18,15 +18,6 @@ span::span(unsigned int len):
 span::span(span const& span):
 	numbers(span.numbers), len(span.len) {}
 
-template<typename Iterator>
-span::span(Iterator const& begin, Iterator const& last):
-	numbers(), len(0)
-{
-	this->len = last - begin;
-	for (Iterator start = begin; start != last; start++)
-		this->numbers.insert(*start);
-}
-
 span::~span() {}
 
 span&	span::operator=(span const& span)
@@ -42,15 +33,6 @@ void			span::addNumber(int n)
 	if (this->numbers.size() == this->len)
 		throw(span::ExceedSpanSizeException());
 	this->numbers.insert(n);
-}
-
-template<typename Iterator>
-void			span::addNumber(Iterator const& begin, Iterator const& last)
-{
-	if (last - begin + this->numbers.size() >= this->len)
-		throw (span::ExceedSpanSizeException());
-	for (Iterator start = begin; start != last; start++)
-		this->numbers.insert(*start);
 }
 
 unsigned int	span::shortestSpan(void)

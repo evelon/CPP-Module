@@ -21,12 +21,12 @@ bool	isCStringInt(const char* str)
 
 bool	isCStringFloat(const char* str)
 {
-	if (!strcmp(str, "nanf") ||
-		!strcmp(str, "inff") ||
-		!strcmp(str, "-inff"))
+	if (!strcmp(str, "nanf"))
 		return (true);
 	if (*str == '-' || *str == '+')
 		str++;
+	if (!strcmp(str, "inff"))
+		return (true);
 	int	i = 0;
 
 	while (str[i])
@@ -57,12 +57,12 @@ bool	isCStringFloat(const char* str)
 
 bool	isCStringDouble(const char* str)
 {
-	if (!strcmp(str, "nan") ||
-		!strcmp(str, "inf") ||
-		!strcmp(str, "-inf"))
+	if (!strcmp(str, "nan"))
 		return (true);
 	if (*str == '-' || *str == '+')
 		str++;
+	if (!strcmp(str, "inf"))
+		return (true);
 	int	i = 0;
 
 	while (str[i])
@@ -124,7 +124,9 @@ void	printFloat(float f)
 
 	ss << f;
 	ss >> str;
-	if (str.find_first_of("e.") == std::string::npos)
+	if (str.find_first_of("e.") == std::string::npos \
+		&& str.find("inf") == std::string::npos \
+		&& str.find("nan") == std::string::npos)
 		std::cout << ".0";
 	std::cout << "f\n";
 }
@@ -138,7 +140,9 @@ void	printDouble(double d)
 
 	ss << d;
 	ss >> str;
-	if (str.find_first_of("e.") == std::string::npos)
+	if (str.find_first_of("e.") == std::string::npos \
+		&& str.find("inf") == std::string::npos \
+		&& str.find("nan") == std::string::npos)
 		std::cout << ".0";
 	std::cout << "\n";
 }
@@ -221,4 +225,5 @@ int	main(int argc, char* argv[])
 		toDouble(argv[1]);
 	else
 		impossible();
+	return (0);
 }

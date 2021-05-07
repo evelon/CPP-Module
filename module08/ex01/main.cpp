@@ -17,7 +17,7 @@ int	main()
 	srand(time(nullptr));
 	try
 	{
-		std::cout << "error test " << ++n << "\n";
+		std::cout << "case " << ++n << "\n";
 		len = 0;
 		std::cout << "initiate span with parameter " << len << "\n";
 		span	sp(len);
@@ -26,13 +26,13 @@ int	main()
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "error: " << e.what() << '\n';
 	}
 	std::cout << '\n';
 
 	try
 	{
-		std::cout << "error test " << ++n << "\n";
+		std::cout << "case " << ++n << "\n";
 		len = 3;
 		std::cout << "initiate span with parameter " << len << "\n";
 		span	sp(len);
@@ -44,15 +44,15 @@ int	main()
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "error: " << e.what() << '\n';
 	}
 	std::cout << '\n';
 
 	try
 	{
-		std::cout << "error test " << ++n << "\n";
+		std::cout << "case " << ++n << "\n";
 		len = 3;
-		std::cout << "initiate span with parameter" << len << "\n";
+		std::cout << "initiate span with parameter " << len << "\n";
 		span	sp(len);
 
 		std::cout << "make a vector with 10 elements\n";
@@ -65,41 +65,76 @@ int	main()
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "error: " << e.what() << '\n';
 	}
 	std::cout << '\n';
 
 	try
 	{
-		std::cout << "error test " << ++n << "\n";
-		len = 3;
-		std::cout << "initiate span with parameter" << len << "\n";
+		std::cout << "case " << ++n << "\n";
+		len = 1;
+		std::cout << "initiate span with parameter " << len << "\n";
 		span	sp(len);
-		std::cout << "make a vector with 10 elements\n";
-		std::cout << "get shortest span\n";
-		std::cout << sp.shortestSpan();
+		std::cout << "add a number\n";
+		sp.addNumber(rand());
+		std::cout << "get longest span\n";
+		std::cout << sp.longestSpan() << '\n';
 		std::cout << "case " << n << ": no error\n";
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "error: " << e.what() << '\n';
 	}
 	std::cout << '\n';
 
 	try
 	{
-		std::cout << "error test " << ++n << "\n";
+		std::cout << "case " << ++n << "\n";
 		len = 3;
-		std::cout << "initiate span with parameter" << len << "\n";
+		std::cout << "initiate span with parameter " << len << "\n";
 		span	sp(len);
-		std::cout << "make a vector with 10 elements\n";
+		std::cout << "add 3 elements\n";
+		for (int i = 0; i < 3; i++)
+		{
+			std::cout << 3 << '\n';
+			sp.addNumber(3);
+		}
 		std::cout << "get shortest span\n";
-		std::cout << sp.shortestSpan();
+		std::cout << sp.shortestSpan() << '\n';
 		std::cout << "case " << n << ": no error\n";
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "error: " << e.what() << '\n';
 	}
 	std::cout << '\n';
+
+	for (int i = 0; i < 10; i++)
+	{
+		try
+		{
+			std::cout << "case " << ++n << "\n";
+			len = rand() % 10;
+			std::cout << "initiate span with parameter " << len << "\n";
+			span	sp(len);
+			std::cout << "add " << len << " elements\n";
+			for (int i = 0; i < len; i++)
+			{
+				int	temp = rand() % 30;
+				std::cout << temp << '\n';
+				sp.addNumber(temp);
+			}
+
+			std::cout << "get longest span\n";
+			std::cout << sp.longestSpan() << '\n';
+			std::cout << "get shortest span\n";
+			std::cout << sp.shortestSpan() << '\n';
+			std::cout << "case " << n << ": no error\n";
+		}
+		catch(std::exception& e)
+		{
+			std::cerr << "error: " << e.what() << '\n';
+		}
+		std::cout << '\n';
+	}
 }
