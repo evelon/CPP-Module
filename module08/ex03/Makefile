@@ -8,6 +8,15 @@ CPP = clang++
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = \
+	IncrPtr.cpp \
+	DecrPtr.cpp \
+	IncrVal.cpp \
+	DecrVal.cpp \
+	InputVal.cpp \
+	OutputVal.cpp \
+	LoopStart.cpp \
+	LoopEnd.cpp \
+	Executer.cpp \
 	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

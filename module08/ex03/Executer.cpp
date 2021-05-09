@@ -1,51 +1,63 @@
 #include "Executer.hpp"
 
-void	loopInstr(void)
-{
+// const IncrPtr	Executer::incrPtr = IncrPtr();
+// const DecrPtr	Executer::decrPtr = DecrPtr();
+// const IncrVal	Executer::incrVal = IncrVal();
+// const DecrVal	Executer::decrVal = DecrVal();
+// const InputVal	Executer::inputVal = InputVal();
+// const OutputVal	Executer::outputVal = OutputVal();
+// const LoopStart	Executer::loopStart = LoopStart();
+// const LoopEnd	Executer::loopEnd = LoopEnd();
 
-}
+const char			Executer::instrSymbols[8] = {
+	'>', '<', '+', '-', ',', '.', '[', ']'
+};
+
+const IInstruction* const	Executer::instrList[8] = {
+	&Executer::incrPtr,
+	&Executer::decrPtr,
+	&Executer::incrVal,
+	&Executer::decrVal,
+	&Executer::inputVal,
+	&Executer::outputVal,
+	&Executer::loopStart,
+	&Executer::loopEnd
+};
 
 Executer::Executer():
-	ptr(memory.begin()), instrPtr(instrQ.begin())
-{
-	for (int i = 0; i < 30000; i++)
-		this->memory[i] = 0;
-}
+	ptr(memory.begin()), instrIter(instrQ.begin())
+{}
 
 Executer::Executer(Executer const& executer):
-	instrQ(executer.instrQ)
+	memory(executer.memory), instrQ(executer.instrQ)
 {
-	for (int i = 0; i < 30000; i++)
-		this->memory[i] = executer.memory[i];
 	this->ptr = this->memory.begin() + (executer.ptr - executer.memory.begin());
 }
 
-Executer::~Executer()
-{
-	for (std::deque<IInstruction>::iterator it = this->instrQ.begin();
-		it != this->instrQ.end();
-		it++)
-	{
-		delete *it;
-	}
-}
+Executer::~Executer() {}
 
 Executer&	Executer::operator=(Executer const& executer)
 {
-	for (int i = 0; i < 30000; i++)
-		this->memory[i] = executer.memory[i];
+	this->memory = executer.memory;
 	this->ptr = this->memory.begin() + (executer.ptr - executer.memory.begin());
 	this->instrQ = executer.instrQ;
+	return (*this);
 }
 
-void	Executer::getInstruction(char c)
+void	Executer::storeInstr(char c)
 {
-	switch (c)
+	for (int i = 0; i < 8; i++)
 	{
-		case '>':
-
-
+		if (this->instrSymbols[i] == c)
+		{
+			this->instrQ.push_back(const_cast<IInstruction *const>(this->instrList[i]));
+			return ;
+		}
 	}
 }
 
-void	Executer::execute(void);
+void	Executer::execute(void)
+{
+	while (this->instrIter != this->instrQ.end())
+		(*this->instrIter)->execute(this->instrIter, this->ptr);
+}
