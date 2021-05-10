@@ -15,7 +15,7 @@ public:
 	virtual ~DecrPtr();
 	// virtual char const&	getSymbol(void);
 	virtual void	execute(
-		std::deque<char>::iterator& it,
+		std::deque<uint8_t>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
 		) const;
 };

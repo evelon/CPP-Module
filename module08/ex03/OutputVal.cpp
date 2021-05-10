@@ -10,7 +10,7 @@ OutputVal::OutputVal(OutputVal const& output_val)
 OutputVal::~OutputVal() {}
 
 void	OutputVal::execute(
-	std::deque<char>::iterator& it,
+	std::deque<uint8_t>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
 	) const
 {

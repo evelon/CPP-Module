@@ -13,7 +13,7 @@ public:
 	LoopEnd(LoopEnd const& loop_end);
 	virtual ~LoopEnd();
 	virtual void	execute(
-		std::deque<char>::iterator& it,
+		std::deque<uint8_t>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
 		) const;
 };

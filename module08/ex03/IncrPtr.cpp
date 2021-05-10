@@ -10,7 +10,7 @@ IncrPtr::IncrPtr(IncrPtr const& incr_ptr)
 IncrPtr::~IncrPtr() {}
 
 void	IncrPtr::execute(
-	std::deque<char>::iterator& it,
+	std::deque<uint8_t>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
 	) const
 {

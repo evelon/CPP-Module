@@ -14,7 +14,7 @@ public:
 	OutputVal(OutputVal const& output_val);
 	virtual ~OutputVal();
 	virtual void	execute(
-		std::deque<char>::iterator& it,
+		std::deque<uint8_t>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
 		) const;
 };

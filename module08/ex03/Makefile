@@ -5,7 +5,7 @@ NAME = MindOpenIntepreter
 all: $(NAME)
 
 CPP = clang++
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
 
 SRCS = \
 	IncrPtr.cpp \

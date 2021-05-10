@@ -61,5 +61,5 @@ void	Executer::execute(void)
 {
 	instrIter = instrQ.begin();
 	while (instrIter != instrQ.end())
-		instrList[static_cast<int>(*instrIter)]->execute(instrIter, ptr);
+		instrList[(*instrIter)]->execute(instrIter, ptr);
 }
