@@ -86,10 +86,11 @@ int	main()
 		arr2 = arr1;
 		for (int i = 0; i < 10; i++)
 			std::cout << "arr2 index " << i << ": " << arr2[i] << '\n';
-		std::cout << "Error of no error\n";
+		std::cout << "No error\n";
 	}
 	catch(std::exception& e)
 	{
 		std::cout << e.what() << '\n';
 	}
+	system("leaks a.out > a.out_leaks");
 }

@@ -17,5 +17,6 @@ int	main()
 	for (int i = 0; i < 8; i++)
 		std::cout << data->s2[i];
 	std::cout << std::endl;
+	delete data;
 	return (0);
 }
