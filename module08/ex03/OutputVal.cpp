@@ -2,17 +2,17 @@
 
 OutputVal::OutputVal() {}
 
-OutputVal::~OutputVal() {}
-
-char const&	OutputVal::getSymbol(void)
+OutputVal::OutputVal(OutputVal const& output_val)
 {
-	return (this->symbol);
+	(void)output_val;
 }
 
+OutputVal::~OutputVal() {}
+
 void	OutputVal::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	std::cout << *ptr;
 	it++;

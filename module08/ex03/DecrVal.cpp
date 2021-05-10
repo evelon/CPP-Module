@@ -2,17 +2,17 @@
 
 DecrVal::DecrVal() {}
 
-DecrVal::~DecrVal() {}
-
-char const&	DecrVal::getSymbol(void)
+DecrVal::DecrVal(DecrVal const& decr_val)
 {
-	return (this->symbol);
+	(void)decr_val;
 }
 
+DecrVal::~DecrVal() {}
+
 void	DecrVal::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	(*ptr)--;
 	it++;

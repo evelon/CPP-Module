@@ -1,18 +1,20 @@
 #ifndef IINSTRUCTION_HPP
 # define IINSTRUCTION_HPP
 
-#include <deque>
-#include <array>
+# include <deque>
+# include <array>
+
+# define LOOP_START (6)
+# define LOOP_END (7)
 
 class	IInstruction
 {
 public:
-	virtual ~IInstruction();
+	virtual ~IInstruction() {};
 	virtual void	execute(
-		std::deque<IInstruction*>::iterator& it,
+		std::deque<char>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
-		) = 0;
-	virtual char const&	getSymbol(void) = 0;
+		) const = 0;
 };
 
 #endif

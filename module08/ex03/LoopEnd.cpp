@@ -1,32 +1,34 @@
 #include "LoopEnd.hpp"
 
+#include <iostream>
+
 LoopEnd::LoopEnd() {}
+
+LoopEnd::LoopEnd(LoopEnd const& loop_end)
+{
+	(void)loop_end;
+}
 
 LoopEnd::~LoopEnd() {}
 
-char const&	LoopEnd::getSymbol(void)
-{
-	return (this->symbol);
-}
-
 void	LoopEnd::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	if (*ptr == 0)
 	{
 		it++;
 		return ;
 	}
-	int	level = 0;
-	while ((*it)->getSymbol() != '[' && level != 0)
+	int	level = -1;
+	while (level != 0)
 	{
-		if ((*it)->getSymbol() == '[')
-			level++;
-		else if ((*it)->getSymbol() == ']')
-			level--;
 		it--;
+		if (*it == LOOP_START)
+			level++;
+		else if (*it == LOOP_END)
+			level--;
 	}
 	return ;
 }

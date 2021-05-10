@@ -7,18 +7,16 @@
 class	InputVal: public IInstruction
 {
 private:
-	static const char	symbol = ',';
-	InputVal(InputVal const& input_val);
 	InputVal&	operator=(InputVal const& input_val);
 
 public:
 	InputVal();
+	InputVal(InputVal const& input_val);
 	virtual ~InputVal();
-	virtual char const&	getSymbol(void);
 	virtual void	execute(
-		std::deque<IInstruction*>::iterator& it,
+		std::deque<char>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
-		);
+		) const;
 };
 
 #endif

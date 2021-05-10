@@ -1,13 +1,13 @@
 #include "Executer.hpp"
 
-// const IncrPtr	Executer::incrPtr = IncrPtr();
-// const DecrPtr	Executer::decrPtr = DecrPtr();
-// const IncrVal	Executer::incrVal = IncrVal();
-// const DecrVal	Executer::decrVal = DecrVal();
-// const InputVal	Executer::inputVal = InputVal();
-// const OutputVal	Executer::outputVal = OutputVal();
-// const LoopStart	Executer::loopStart = LoopStart();
-// const LoopEnd	Executer::loopEnd = LoopEnd();
+const IncrPtr	Executer::incrPtr = IncrPtr();
+const DecrPtr	Executer::decrPtr = DecrPtr();
+const IncrVal	Executer::incrVal = IncrVal();
+const DecrVal	Executer::decrVal = DecrVal();
+const InputVal	Executer::inputVal = InputVal();
+const OutputVal	Executer::outputVal = OutputVal();
+const LoopStart	Executer::loopStart = LoopStart();
+const LoopEnd	Executer::loopEnd = LoopEnd();
 
 const char			Executer::instrSymbols[8] = {
 	'>', '<', '+', '-', ',', '.', '[', ']'
@@ -48,16 +48,18 @@ void	Executer::storeInstr(char c)
 {
 	for (int i = 0; i < 8; i++)
 	{
-		if (this->instrSymbols[i] == c)
+		if (instrSymbols[i] == c)
 		{
-			this->instrQ.push_back(const_cast<IInstruction *const>(this->instrList[i]));
+			this->instrQ.push_back(i);
 			return ;
 		}
 	}
+	assert(0);
 }
 
 void	Executer::execute(void)
 {
-	while (this->instrIter != this->instrQ.end())
-		(*this->instrIter)->execute(this->instrIter, this->ptr);
+	instrIter = instrQ.begin();
+	while (instrIter != instrQ.end())
+		instrList[static_cast<int>(*instrIter)]->execute(instrIter, ptr);
 }

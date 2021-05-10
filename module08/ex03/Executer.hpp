@@ -18,8 +18,8 @@ class	Executer
 private:
 	std::array<char, 30000>				memory;
 	std::array<char, 30000>::iterator	ptr;
-	std::deque<IInstruction*>			instrQ;
-	std::deque<IInstruction*>::iterator	instrIter;
+	std::deque<char>					instrQ;
+	std::deque<char>::iterator			instrIter;
 
 	static const char					instrSymbols[8];
 	static const IncrPtr				incrPtr;

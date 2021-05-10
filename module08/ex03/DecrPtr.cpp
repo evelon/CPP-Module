@@ -2,17 +2,18 @@
 
 DecrPtr::DecrPtr() {}
 
-DecrPtr::~DecrPtr() {}
-
-char const&	DecrPtr::getSymbol(void)
+DecrPtr::DecrPtr(DecrPtr const& decr_ptr)
 {
-	return (this->symbol);
+	(void)decr_ptr;
 }
 
+DecrPtr::~DecrPtr() {}
+
+
 void	DecrPtr::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	ptr--;
 	it++;

@@ -6,18 +6,16 @@
 class	LoopEnd: public IInstruction
 {
 private:
-	static const char	symbol = ']';
-	LoopEnd(LoopEnd const& loop_end);
 	LoopEnd&	operator=(LoopEnd const& loop_end);
 
 public:
 	LoopEnd();
+	LoopEnd(LoopEnd const& loop_end);
 	virtual ~LoopEnd();
-	virtual char const&	getSymbol(void);
 	virtual void	execute(
-		std::deque<IInstruction*>::iterator& it,
+		std::deque<char>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
-		);
+		) const;
 };
 
 #endif

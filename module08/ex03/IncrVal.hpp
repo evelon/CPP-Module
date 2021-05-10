@@ -6,18 +6,16 @@
 class	IncrVal: public IInstruction
 {
 private:
-	static const char	symbol = '+';
-	IncrVal(IncrVal const& incr_val);
 	IncrVal&	operator=(IncrVal const& incr_val);
 
 public:
 	IncrVal();
+	IncrVal(IncrVal const& incr_val);
 	virtual ~IncrVal();
-	virtual char const&	getSymbol(void);
 	virtual void	execute(
-		std::deque<IInstruction*>::iterator& it,
+		std::deque<char>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
-		);
+		) const;
 };
 
 #endif

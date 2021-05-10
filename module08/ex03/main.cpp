@@ -11,15 +11,15 @@ int	main(int argc, char* argv[])
 	{
 		Executer	executer;
 
-		std::ifstream	if
+		std::ifstream	ifs;
+		ifs.open(argv[i]);
 		while (1)
 		{
-			if.open(argv[i]);)
-			if.get(&input);
-			if (if.eof())
+			ifs.get(input);
+			if (ifs.eof())
 				break;
 			if (instrSet.find_first_of(input) != std::string::npos)
-				executer.storeInstr(c);
+				executer.storeInstr(input);
 		}
 		executer.execute();
 	}

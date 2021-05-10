@@ -6,18 +6,18 @@
 class	DecrPtr: public IInstruction
 {
 private:
-	static const char	symbol = '<';
-	DecrPtr(DecrPtr const& decr_ptr);
+	// static const char	symbol = '<';
 	DecrPtr&	operator=(DecrPtr const& decr_ptr);
 
 public:
 	DecrPtr();
+	DecrPtr(DecrPtr const& decr_ptr);
 	virtual ~DecrPtr();
-	virtual char const&	getSymbol(void);
+	// virtual char const&	getSymbol(void);
 	virtual void	execute(
-		std::deque<IInstruction*>::iterator& it,
+		std::deque<char>::iterator& it,
 		std::array<char, 30000>::iterator& ptr
-		);
+		) const;
 };
 
 #endif

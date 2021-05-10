@@ -2,17 +2,17 @@
 
 IncrPtr::IncrPtr() {}
 
-IncrPtr::~IncrPtr() {}
-
-char const&	IncrPtr::getSymbol(void)
+IncrPtr::IncrPtr(IncrPtr const& incr_ptr)
 {
-	return (this->symbol);
+	(void)incr_ptr;
 }
 
+IncrPtr::~IncrPtr() {}
+
 void	IncrPtr::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	ptr++;
 	it++;

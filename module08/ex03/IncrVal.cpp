@@ -2,17 +2,17 @@
 
 IncrVal::IncrVal() {}
 
-IncrVal::~IncrVal() {}
-
-char const&	IncrVal::getSymbol(void)
+IncrVal::IncrVal(IncrVal const& incr_val)
 {
-	return (this->symbol);
+	(void)incr_val;
 }
 
+IncrVal::~IncrVal() {}
+
 void	IncrVal::execute(
-	std::deque<IInstruction*>::iterator& it,
+	std::deque<char>::iterator& it,
 	std::array<char, 30000>::iterator& ptr
-	)
+	) const
 {
 	(*ptr)++;
 	it++;
